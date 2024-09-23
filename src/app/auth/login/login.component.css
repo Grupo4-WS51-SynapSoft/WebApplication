@@ -42,6 +42,7 @@
   min-height: 40px;
   display: flex;
   align-items: center;
+  font-size: 14px;
 }
 
 .form-field__link {
@@ -63,6 +64,7 @@
 
 .primary-btn {
   background: #0d3a5a !important;
+  max-width: 160px;
   width: 100%;
   border-radius: 5px;
 }

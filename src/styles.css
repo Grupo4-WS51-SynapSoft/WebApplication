@@ -46,6 +46,8 @@ button,
 textarea,
 select {
   font: inherit;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 /*

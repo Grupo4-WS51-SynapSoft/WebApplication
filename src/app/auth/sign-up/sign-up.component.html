@@ -1,1 +1,68 @@
-<p>sign-up works!</p>
+<section class="main-section">
+  <div class="card">
+    <h2 class="card-title">Register your account!</h2>
+    <form class="form-container">
+      <div class="form-row">
+        <div class="form-field">
+          <label class="form-field__label">First Name</label>
+          <mat-form-field appearance="outline">
+            <input matInput />
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <label class="form-field__label">Last Name</label>
+          <mat-form-field appearance="outline">
+            <input matInput />
+          </mat-form-field>
+        </div>
+      </div>
+      <div>
+        <div class="form-field">
+          <label class="form-field__label">Email</label>
+          <mat-form-field appearance="outline">
+            <input matInput />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label class="form-field__label">Document</label>
+          <mat-form-field appearance="outline">
+            <input matInput />
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <label class="form-field__label">Phone</label>
+          <mat-form-field appearance="outline">
+            <input matInput />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label class="form-field__label">Password</label>
+          <mat-form-field appearance="outline">
+            <input matInput />
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <label class="form-field__label">Retype password</label>
+          <mat-form-field appearance="outline">
+            <input matInput />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <span class="form-field__link">
+        Have an account?
+        <a routerLink="/login">Go to login</a></span
+      >
+
+      <div class="form-btn-wrapper">
+        <button mat-flat-button class="primary-btn">Create account</button>
+      </div>
+    </form>
+  </div>
+</section>
