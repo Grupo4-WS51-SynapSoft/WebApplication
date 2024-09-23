@@ -68,3 +68,8 @@
   width: 100%;
   border-radius: 5px;
 }
+
+:host input[type="password"]::-ms-reveal,
+:host input[type="password"]::-ms-clear {
+  display: none;
+}

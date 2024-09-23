@@ -1,7 +1,7 @@
 <section class="main-section">
   <div class="card">
     <h2 class="card-title">Welcome!</h2>
-    <form class="form-container">
+    <form class="form-container" (ngSubmit)="login()">
       <div class="form-field">
         <label class="form-field__label">Email</label>
         <mat-form-field appearance="outline">
@@ -12,7 +12,16 @@
       <div class="form-field">
         <label class="form-field__label">Password</label>
         <mat-form-field appearance="outline">
-          <input matInput />
+          <input matInput [type]="showPassword ? 'text' : 'password'" />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="toggleShowPassword($event)"
+          >
+            <mat-icon>{{
+              showPassword ? "visibility" : "visibility_off"
+            }}</mat-icon>
+          </button>
         </mat-form-field>
       </div>
 

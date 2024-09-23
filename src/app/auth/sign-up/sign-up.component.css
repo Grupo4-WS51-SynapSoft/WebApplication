@@ -80,3 +80,8 @@
 :host input {
   min-width: 0;
 }
+
+:host input[type="password"]::-ms-reveal,
+:host input[type="password"]::-ms-clear {
+  display: none;
+}
