@@ -1,1 +1,29 @@
-<p>login works!</p>
+<section class="main-section">
+  <div class="card">
+    <h2 class="card-title">Welcome!</h2>
+    <form class="form-container">
+      <div class="form-field">
+        <label class="form-field__label">Email</label>
+        <mat-form-field appearance="outline">
+          <input matInput />
+        </mat-form-field>
+      </div>
+
+      <div class="form-field">
+        <label class="form-field__label">Password</label>
+        <mat-form-field appearance="outline">
+          <input matInput />
+        </mat-form-field>
+      </div>
+
+      <span class="form-field__link"
+        >Don’t have an account?
+        <a routerLink="/sign-up">Create a new one</a></span
+      >
+
+      <div class="form-btn-wrapper">
+        <button mat-flat-button class="primary-btn">Enter</button>
+      </div>
+    </form>
+  </div>
+</section>
