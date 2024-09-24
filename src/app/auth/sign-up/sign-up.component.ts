@@ -60,6 +60,6 @@ export class SignUpComponent {
   }
 
   signUp() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/search-caregiver']);
   }
 }
