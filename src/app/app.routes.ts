@@ -25,7 +25,7 @@ export const routes: Routes = [
     component: HomeComponent,
     children: [
       { path: 'search-caregiver', component: SearchPageComponent },
-      { path: 'caregiver-detail', component: CaregiverDetailComponent },
+      { path: 'search-caregiver/:id', component: CaregiverDetailComponent },
     ],
   },
 ];
