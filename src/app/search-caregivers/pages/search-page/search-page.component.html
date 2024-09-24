@@ -1,0 +1,43 @@
+<section>
+  <header>
+    <h1 class="header-title">Search for caregivers</h1>
+
+    <div class="header-tools-container">
+      <div class="header-select-actions">
+        <div class="header-select-container">
+          <span>Location</span>
+          <mat-form-field class="header-select" appearance="outline">
+            <mat-select hidden value="Lima">
+              <mat-option value="Lima"> Lima </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="header-select-container">
+          <span>Rating</span>
+          <mat-form-field class="header-select" appearance="outline">
+            <mat-select hidden value="Most relevant">
+              <mat-option value="Most relevant">Most relevant</mat-option>
+              <mat-option value="Most popular">Most popular</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div>
+        <button mat-flat-button class="primary-btn">
+          <mat-icon>refresh</mat-icon>
+          <span>Refresh</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="search-caregivers-list">
+    <app-caregiver-card></app-caregiver-card>
+    <app-caregiver-card></app-caregiver-card>
+    <app-caregiver-card></app-caregiver-card>
+    <app-caregiver-card></app-caregiver-card>
+    <app-caregiver-card></app-caregiver-card>
+    <app-caregiver-card></app-caregiver-card>
+  </div>
+</section>

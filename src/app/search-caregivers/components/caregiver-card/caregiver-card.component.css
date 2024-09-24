@@ -1,0 +1,57 @@
+:host ::ng-deep .mat-mdc-card {
+  overflow: hidden;
+}
+:host ::ng-deep .mat-mdc-card-header {
+  padding: 0;
+  overflow: hidden;
+}
+
+.caregiver-img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.caregiver-info {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.caregiver-name {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.caregiver-address {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.caregiver-rating {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.caregiver-rating ::ng-deep .mat-icon {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  color: #da373d;
+}
+
+.caregiver-biography {
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.btn-see-more {
+  margin-top: 12px;
+  margin-inline: auto;
+  background: #0d3a5a !important;
+  border-radius: 5px;
+}
