@@ -1,0 +1,27 @@
+<div class="payment-methods-container">
+  <h1>Your payment methods</h1>
+  <p>
+    In this section, you manage your payment wallet by registering your cards and setting up preferred payment methods for a seamless checkout experience.
+  </p>
+
+  <button mat-raised-button color="primary" (click)="showForm = !showForm">
+    <mat-icon>add</mat-icon> Add a card
+  </button>
+
+  <app-payment-form *ngIf="showForm" (addCard)="addCard($event)"></app-payment-form>
+
+  <div class="card-list">
+    <mat-card *ngFor="let card of cards" class="payment-card">
+      <div class="card-header">
+        <mat-card-title>Num: {{ card.cardNumber }}</mat-card-title>
+        <button mat-icon-button color="warn" (click)="removeCard(card)">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+      <mat-card-subtitle>F.V.: {{ card.expirationDate }}</mat-card-subtitle>
+      <mat-card-content>
+        {{ card.cardHolderName }}
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
