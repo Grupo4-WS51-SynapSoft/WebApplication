@@ -1,0 +1,27 @@
+.layout {
+  display: flex;
+  width: 100%;
+  height: 100dvh;
+}
+
+.sidebar-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 320px;
+  height: 100%;
+  background: linear-gradient(
+    172.88deg,
+    #0d3a5a -11.67%,
+    #25618b 42.27%,
+    #1f577e 106.89%
+  );
+
+  color: #fff;
+}
+
+.main-content {
+  width: 100%;
+  padding: 24px 40px;
+  overflow-y: auto;
+}
