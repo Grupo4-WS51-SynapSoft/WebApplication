@@ -1,0 +1,46 @@
+<div class="chat-message-container">
+  <div class="chat-header">
+    <h2>Chat online: {{ contactName }}</h2>
+    <button mat-button color="primary" routerLink="/chat-list">
+      <mat-icon>arrow_back</mat-icon> Go back
+    </button>
+  </div>
+
+  <div class="chat-content">
+    <!-- Primer mensaje de Julio Cesar -->
+    <div class="message-left">
+      <img src="https://randomuser.me/api/portraits/men/61.jpg" alt="avatar" class="avatar" />
+      <div class="message-details">
+        <span class="name">{{ messages[0].name }}</span>
+        <span class="date">{{ messages[0].date }}</span>
+        <p class="text">{{ messages[0].text }}</p>
+      </div>
+    </div>
+
+    <!-- Respuesta del usuario (You) -->
+    <div class="message-right">
+      <div class="message-details">
+        <span class="date">{{ reply.date }}</span>
+        <span class="name">You</span>
+        <p class="text">{{ reply.text }}</p>
+      </div>
+    </div>
+
+    <!-- Segundo mensaje de Julio Cesar -->
+    <div class="message-left">
+      <img src="https://randomuser.me/api/portraits/men/61.jpg" alt="avatar" class="avatar" />
+      <div class="message-details">
+        <span class="name">{{ messages[1].name }}</span>
+        <span class="date">{{ messages[1].date }}</span>
+        <p class="text">{{ messages[1].text }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-input">
+    <input matInput placeholder="Send a message..." [(ngModel)]="newMessage">
+    <button mat-icon-button color="primary" (click)="sendMessage()">
+      <mat-icon>send</mat-icon>
+    </button>
+  </div>
+</div>

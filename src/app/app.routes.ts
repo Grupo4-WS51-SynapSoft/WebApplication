@@ -5,6 +5,8 @@ import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { HomeComponent } from './home/home/home.component';
 import { SearchPageComponent } from './search-caregivers/pages/search-page/search-page.component';
 import { CaregiverDetailComponent } from './search-caregivers/pages/caregiver-detail/caregiver-detail.component';
+import { ChatListComponent } from "./chat/components/chat-list/chat-list.component";
+import {ChatMessageComponent} from "./chat/pages/chat-message/chat-message.component";
 
 export const routes: Routes = [
   {
@@ -26,6 +28,9 @@ export const routes: Routes = [
     children: [
       { path: 'search-caregiver', component: SearchPageComponent },
       { path: 'search-caregiver/:id', component: CaregiverDetailComponent },
+      { path: 'chat-list', component: ChatListComponent },
+      { path: 'chat-message', component: ChatMessageComponent },
     ],
   },
+
 ];
