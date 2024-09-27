@@ -13,12 +13,12 @@
       <mat-card-header>
         <img
           class="caregiver-img"
-          src="https://randomuser.me/api/portraits/women/90.jpg"
-          alt="A user"
+          [src]="caregiver?.image"
+          [alt]="caregiver?.fullName"
         />
       </mat-card-header>
       <mat-card-content>
-        <p class="caregiver-card-name">Julio Cesar</p>
+        <p class="caregiver-card-name">{{ caregiver?.fullName }}</p>
 
         <div class="caregiver-card-list">
           <div class="caregiver-card-item">
@@ -28,7 +28,7 @@
 
           <div class="caregiver-card-item">
             <mat-icon>place</mat-icon>
-            <span>Lima, Callao</span>
+            <span>{{ caregiver?.address }}</span>
           </div>
 
           <div class="caregiver-card-item">
@@ -52,17 +52,7 @@
       <div class="caregiver-biography-content">
         <h3 class="caregiver-section-title">Biography</h3>
         <p class="caregiver-section-text">
-          Hi, I’m Julio Cesar, and I bring over a decade of experience in
-          childcare to the table. My passion for working with children drives me
-          to create safe, nurturing, and stimulating environments where kids can
-          thrive. I’ve had the privilege of working with children of all ages,
-          from infants to pre-teens, and I pride myself on my ability to cater
-          to their individual developmental needs. In my career, I’ve managed
-          diverse groups of children in both private and public settings,
-          designing structured yet flexible schedules that support their growth.
-          I enjoy creating engaging, age-appropriate activities that promote
-          social, emotional, and cognitive development, helping each child reach
-          their full potential.
+          {{ caregiver?.serviceDescription?.biography }}
         </p>
       </div>
       <div class="caregiver-service-content">
@@ -73,15 +63,23 @@
             <table class="caregiver-table-work">
               <tr>
                 <td class="caregiver-table-label">Laboral days:</td>
-                <td class="caregiver-table-content">Monday to Friday</td>
+                <td class="caregiver-table-content">
+                  {{ caregiver?.serviceDescription?.schedule?.join(", ") }}
+                </td>
               </tr>
               <tr>
                 <td class="caregiver-table-label">Hours:</td>
-                <td class="caregiver-table-content">8:00 am to 5:00 pm</td>
+                <td class="caregiver-table-content">
+                  {{ caregiver?.serviceDescription?.workHours?.startTime }} to
+                  {{ caregiver?.serviceDescription?.workHours?.endTime }}
+                </td>
               </tr>
               <tr>
                 <td class="caregiver-table-label">Fare per hour:</td>
-                <td class="caregiver-table-content">S/ 5.90</td>
+                <td class="caregiver-table-content">
+                  S/
+                  {{ caregiver?.serviceDescription?.farePerHour?.toFixed(2) }}
+                </td>
               </tr>
             </table>
           </div>
@@ -89,8 +87,7 @@
           <div>
             <p class="caregiver-workaround-title">Workaround</p>
             <p class="caregiver-workaround-places">
-              San Miguel, Surquillo, San Isidro, San Borja, Miraflores,
-              Lince,...
+              {{ caregiver?.serviceDescription?.workaround?.join(", ") }}
             </p>
           </div>
         </div>

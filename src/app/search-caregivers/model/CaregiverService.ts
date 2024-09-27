@@ -5,4 +5,16 @@ export interface CaregiverServiceModel {
   address: string;
   description: string;
   rate: number;
+  serviceDescription: CaregiverServiceDescription;
+}
+
+export interface CaregiverServiceDescription {
+  biography: string;
+  schedule: string[];
+  workHours: {
+    startTime: string;
+    endTime: string;
+  };
+  farePerHour: number;
+  workaround: string[];
 }
