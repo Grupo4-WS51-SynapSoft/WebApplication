@@ -44,9 +44,9 @@ export class BaseService<T> {
       .pipe(retry(2), catchError(this.handleError));
   }
 
-  getAll(): Observable<T> {
+  getAll(): Observable<T[]> {
     return this.http
-      .get<T>(this.basePath, this.httpOptions)
+      .get<T[]>(this.basePath, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 

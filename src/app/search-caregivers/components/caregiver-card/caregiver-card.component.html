@@ -1,30 +1,24 @@
 <mat-card>
   <mat-card-header>
-    <img
-      class="caregiver-img"
-      src="https://randomuser.me/api/portraits/women/90.jpg"
-      alt="A user"
-    />
+    <img class="caregiver-img" [src]="caregiver.image" alt="A user" />
   </mat-card-header>
   <mat-card-content>
     <div class="caregiver-info">
       <div>
-        <p class="caregiver-name">Julia Rodriguez</p>
-        <p class="caregiver-address">Lima, Callao</p>
+        <p class="caregiver-name">{{ caregiver.fullName }}</p>
+        <p class="caregiver-address">{{ caregiver.address }}</p>
       </div>
       <div class="caregiver-rating">
         <mat-icon>star</mat-icon>
-        <p>4.4</p>
+        <p>{{ caregiver.rate }}</p>
       </div>
     </div>
     <p class="caregiver-biography">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores unde
-      assumenda doloribus quibusdam ratione labore doloremque aliquid sapiente
-      cupiditate odio.
+      {{ caregiver.description }}
     </p>
   </mat-card-content>
   <mat-card-actions>
-    <a class="link-see-more" routerLink="./12">
+    <a class="link-see-more" routerLink="./{{ caregiver.id }}">
       <button mat-flat-button class="btn-see-more">See more</button>
     </a>
   </mat-card-actions>

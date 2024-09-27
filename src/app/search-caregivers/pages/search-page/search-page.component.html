@@ -33,11 +33,6 @@
   </header>
 
   <div class="search-caregivers-list">
-    <app-caregiver-card></app-caregiver-card>
-    <app-caregiver-card></app-caregiver-card>
-    <app-caregiver-card></app-caregiver-card>
-    <app-caregiver-card></app-caregiver-card>
-    <app-caregiver-card></app-caregiver-card>
-    <app-caregiver-card></app-caregiver-card>
+    <app-caregiver-card *ngFor="let caregiver of caregiversList" [caregiver]="caregiver"></app-caregiver-card>
   </div>
 </section>
