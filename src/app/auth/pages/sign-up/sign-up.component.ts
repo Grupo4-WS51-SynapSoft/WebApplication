@@ -71,6 +71,16 @@ export class SignUpComponent {
       role: 'tutor',
     };
 
+    if (this.userForm.value.password !== this.userForm.value.rePassword) return;
+
+    if (
+      !this.userForm.value.email ||
+      !this.userForm.value.document ||
+      !this.userForm.value.phone ||
+      !this.userForm.value.password
+    )
+      return;
+
     this.authService.signUp(user).subscribe((user) => {
       window.localStorage.setItem('user', JSON.stringify(user));
       this.router.navigate(['/search-caregiver']);
