@@ -13,6 +13,8 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from '../../model/User';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -46,7 +48,7 @@ export class SignUpComponent {
   showPassword: boolean = false;
   showRePassword: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   toggleShowPassword(event: MouseEvent) {
     this.showPassword = !this.showPassword;
@@ -60,6 +62,22 @@ export class SignUpComponent {
   }
 
   signUp() {
-    this.router.navigate(['/search-caregiver']);
+    const user: Omit<User, 'id'> = {
+      fullName: `${this.userForm.value.firstName} ${this.userForm.value.lastName}`,
+      email: this.userForm.value.email || '',
+      document: this.userForm.value.document || '',
+      phone: this.userForm.value.phone || '',
+      password: this.userForm.value.password || '',
+      role: 'tutor',
+    };
+
+    this.authService.signUp(user).subscribe((user) => {
+      window.localStorage.setItem('user', JSON.stringify(user));
+      this.router.navigate(['/search-caregiver']);
+    });
+
+    console.log(this.userForm.value);
+
+    // this.router.navigate(['/search-caregiver']);
   }
 }

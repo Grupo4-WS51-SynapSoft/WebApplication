@@ -5,4 +5,5 @@ export interface User {
   document: string;
   password: string;
   phone: string;
+  role: string;
 }

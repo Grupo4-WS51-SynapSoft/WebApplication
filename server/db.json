@@ -80,6 +80,15 @@
       "password": "pedro123",
       "phone": "987654329",
       "role": "tutor"
+    },
+    {
+      "fullName": "rambo rambo",
+      "email": "rambo@mail.com",
+      "document": "99999999",
+      "phone": "999999999",
+      "password": "rambo",
+      "role": "tutor",
+      "id": 10
     }
   ],
   "search-caregivers": [
@@ -92,13 +101,24 @@
       "rate": 4.4,
       "serviceDescription": {
         "biography": "Hi, I’m Juan Pérez, and I bring over a decade of experience in childcare to the table. My passion for working with children drives me to create safe, nurturing, and stimulating environments where kids can thrive. I’ve had the privilege of working with children of all ages, from infants to pre-teens, and I pride myself on my ability to cater to their individual developmental needs. In my career, I’ve managed diverse groups of children in both private and public settings, designing structured yet flexible schedules that support their growth. I enjoy creating engaging, age-appropriate activities that promote social, emotional, and cognitive development, helping each child reach their full potential. I believe in the importance of open communication with parents to ensure that their expectations are met and that their children are happy and well-cared for. My approach is rooted in patience, empathy, and a genuine love for children. I am committed to continuous learning and professional development to stay updated with the latest childcare practices and techniques. I am also trained in first aid and emergency response, ensuring that I can handle any situation that may arise. My goal is to provide a safe, fun, and educational environment where children can grow and thrive.",
-        "schedule": ["mon", "tue", "wed", "thu", "fri"],
+        "schedule": [
+          "mon",
+          "tue",
+          "wed",
+          "thu",
+          "fri"
+        ],
         "workHours": {
           "startTime": "08:00",
           "endTime": "16:00"
         },
         "farePerHour": 5.9,
-        "workaround": ["San Miguel", "Magdalena", "Surquillo", "San Isidro"]
+        "workaround": [
+          "San Miguel",
+          "Magdalena",
+          "Surquillo",
+          "San Isidro"
+        ]
       }
     },
     {
@@ -110,13 +130,24 @@
       "rate": 4.5,
       "serviceDescription": {
         "biography": "Hello, I’m María López, and I have been a dedicated caregiver for over seven years. My journey in this field began with a passion for helping children grow and develop in a safe and nurturing environment. I have experience working with children of all ages, from infants to teenagers, and I am skilled at creating engaging and educational activities that promote their development. I believe in the importance of open communication with parents to ensure that their expectations are met and that their children are happy and well-cared for. My approach is centered on patience, empathy, and a genuine love for children. I am committed to continuous learning and regularly attend workshops and training sessions to stay updated with the latest childcare practices. My training includes first aid and CPR, ensuring that I am prepared to handle any emergencies that may arise. My goal is to provide a loving and supportive environment where children can thrive and reach their full potential.",
-        "schedule": ["mon", "tue", "wed", "thu", "fri"],
+        "schedule": [
+          "mon",
+          "tue",
+          "wed",
+          "thu",
+          "fri"
+        ],
         "workHours": {
           "startTime": "09:00",
           "endTime": "17:00"
         },
         "farePerHour": 6.2,
-        "workaround": ["San Isidro", "Miraflores", "Surco", "San Borja"]
+        "workaround": [
+          "San Isidro",
+          "Miraflores",
+          "Surco",
+          "San Borja"
+        ]
       }
     },
     {
@@ -128,13 +159,24 @@
       "rate": 4.6,
       "serviceDescription": {
         "biography": "Hi, I’m Carlos García, and I have been a professional caregiver for over eight years. My passion for working with children drives me to create safe, nurturing, and stimulating environments where kids can thrive. I have experience working with children of all ages, from infants to teenagers, and I am skilled at creating engaging and educational activities that promote their development. I believe in the importance of open communication with parents to ensure that their expectations are met and that their children are happy and well-cared for. My approach is centered on patience, empathy, and a genuine love for children. I am committed to continuous learning and regularly attend workshops and training sessions to stay updated with the latest childcare practices. My training includes first aid and CPR, ensuring that I am prepared to handle any emergencies that may arise. My goal is to provide a loving and supportive environment where children can thrive and reach their full potential.",
-        "schedule": ["mon", "tue", "wed", "thu", "fri"],
+        "schedule": [
+          "mon",
+          "tue",
+          "wed",
+          "thu",
+          "fri"
+        ],
         "workHours": {
           "startTime": "07:00",
           "endTime": "15:00"
         },
-        "farePerHour": 6.0,
-        "workaround": ["La Molina", "Surco", "San Borja", "San Isidro"]
+        "farePerHour": 6,
+        "workaround": [
+          "La Molina",
+          "Surco",
+          "San Borja",
+          "San Isidro"
+        ]
       }
     },
     {
@@ -146,13 +188,24 @@
       "rate": 4.7,
       "serviceDescription": {
         "biography": "Hello, I’m Ana Martínez, and I have been dedicated to providing exceptional childcare for over eight years. My journey in this field began with a deep-seated love for children and a desire to contribute positively to their development. Throughout my career, I have worked with children of various ages, from newborns to teenagers, and have developed a keen understanding of their unique needs and behaviors. I am adept at creating a safe and nurturing environment where children feel valued and supported. My approach is centered on fostering a positive and stimulating atmosphere that encourages learning and growth. I believe in the power of play as a tool for development and incorporate educational activities into daily routines. I am committed to maintaining open lines of communication with parents to ensure that their expectations are met and that their children are thriving. My training includes first aid and CPR, ensuring that I am prepared to handle any emergencies that may arise. I am passionate about continuous learning and regularly attend workshops and training sessions to stay updated with the latest childcare practices. My goal is to provide a loving and supportive environment where children can flourish and reach their full potential.",
-        "schedule": ["mon", "tue", "wed", "thu", "fri"],
+        "schedule": [
+          "mon",
+          "tue",
+          "wed",
+          "thu",
+          "fri"
+        ],
         "workHours": {
           "startTime": "09:00",
           "endTime": "17:00"
         },
         "farePerHour": 6.5,
-        "workaround": ["San Borja", "La Molina", "Surco", "San Isidro"]
+        "workaround": [
+          "San Borja",
+          "La Molina",
+          "Surco",
+          "San Isidro"
+        ]
       }
     },
     {
@@ -164,13 +217,24 @@
       "rate": 4.6,
       "serviceDescription": {
         "biography": "Hi, I’m Luis Fernández, and I have been a dedicated caregiver for over ten years. My journey in this field began with a passion for helping others and a desire to make a positive impact on the lives of children and their families. I have extensive experience working with children of all ages, from infants to teenagers, and I am skilled at creating a safe and nurturing environment where they can thrive. My approach is centered on building strong, trusting relationships with both children and their parents. I believe in the importance of open communication and work closely with parents to ensure that their expectations are met and that their children are happy and well-cared for. I am committed to continuous learning and regularly attend workshops and training sessions to stay updated with the latest childcare practices. My training includes first aid and CPR, ensuring that I am prepared to handle any emergencies that may arise. I am passionate about creating engaging, age-appropriate activities that promote social, emotional, and cognitive development. My goal is to provide a loving and supportive environment where children can grow and reach their full potential.",
-        "schedule": ["mon", "tue", "wed", "thu", "fri"],
+        "schedule": [
+          "mon",
+          "tue",
+          "wed",
+          "thu",
+          "fri"
+        ],
         "workHours": {
           "startTime": "07:00",
           "endTime": "15:00"
         },
-        "farePerHour": 6.0,
-        "workaround": ["Miraflores", "Barranco", "San Isidro", "Surco"]
+        "farePerHour": 6,
+        "workaround": [
+          "Miraflores",
+          "Barranco",
+          "San Isidro",
+          "Surco"
+        ]
       }
     },
     {
@@ -182,13 +246,24 @@
       "rate": 4.7,
       "serviceDescription": {
         "biography": "Hello, I’m Andrea Torres, and I have been dedicated to providing exceptional childcare for over eight years. My journey in this field began with a deep-seated love for children and a desire to contribute positively to their development. Throughout my career, I have worked with children of various ages, from newborns to teenagers, and have developed a keen understanding of their unique needs and behaviors. I am adept at creating a safe and nurturing environment where children feel valued and supported. My approach is centered on fostering a positive and stimulating atmosphere that encourages learning and growth. I believe in the power of play as a tool for development and incorporate educational activities into daily routines. I am committed to maintaining open lines of communication with parents to ensure that their expectations are met and that their children are thriving. My training includes first aid and CPR, ensuring that I am prepared to handle any emergencies that may arise. I am passionate about continuous learning and regularly attend workshops and training sessions to stay updated with the latest childcare practices. My goal is to provide a loving and supportive environment where children can flourish and reach their full potential.",
-        "schedule": ["mon", "tue", "wed", "thu", "fri"],
+        "schedule": [
+          "mon",
+          "tue",
+          "wed",
+          "thu",
+          "fri"
+        ],
         "workHours": {
           "startTime": "09:00",
           "endTime": "17:00"
         },
         "farePerHour": 6.5,
-        "workaround": ["San Borja", "La Molina", "Surco", "San Isidro"]
+        "workaround": [
+          "San Borja",
+          "La Molina",
+          "Surco",
+          "San Isidro"
+        ]
       }
     },
     {
@@ -200,13 +275,24 @@
       "rate": 4.6,
       "serviceDescription": {
         "biography": "Hi, I’m Roberto Castillo, and I have been a dedicated caregiver for over ten years. My journey in this field began with a passion for helping others and a desire to make a positive impact on the lives of children and their families. I have extensive experience working with children of all ages, from infants to teenagers, and I am skilled at creating a safe and nurturing environment where they can thrive. My approach is centered on building strong, trusting relationships with both children and their parents. I believe in the importance of open communication and work closely with parents to ensure that their expectations are met and that their children are happy and well-cared for. I am committed to continuous learning and regularly attend workshops and training sessions to stay updated with the latest childcare practices. My training includes first aid and CPR, ensuring that I am prepared to handle any emergencies that may arise. I am passionate about creating engaging, age-appropriate activities that promote social, emotional, and cognitive development. My goal is to provide a loving and supportive environment where children can grow and reach their full potential.",
-        "schedule": ["mon", "tue", "wed", "thu", "fri"],
+        "schedule": [
+          "mon",
+          "tue",
+          "wed",
+          "thu",
+          "fri"
+        ],
         "workHours": {
           "startTime": "07:00",
           "endTime": "15:00"
         },
-        "farePerHour": 6.0,
-        "workaround": ["Miraflores", "Barranco", "San Isidro", "Surco"]
+        "farePerHour": 6,
+        "workaround": [
+          "Miraflores",
+          "Barranco",
+          "San Isidro",
+          "Surco"
+        ]
       }
     }
   ]
