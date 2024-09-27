@@ -121,3 +121,7 @@
 .caregiver-card-item .mat-icon {
   color: #da373d;
 }
+.snackbar-container{
+  background: none; /* Esto elimina el color de fondo por defecto del SnackBar */
+  box-shadow: none;
+}

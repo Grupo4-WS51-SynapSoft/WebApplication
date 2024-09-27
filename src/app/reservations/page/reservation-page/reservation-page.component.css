@@ -1,0 +1,28 @@
+.reservation-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  background-color: #fff;
+}
+
+.reservation-details {
+  flex: 1;
+}
+
+.reservation-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.cancelled {
+  color: red;
+  font-weight: bold;
+}
+h1{
+  color:#0d3a5a;
+}

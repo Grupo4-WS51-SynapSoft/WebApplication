@@ -77,3 +77,18 @@ h6 {
   min-height: 36px !important;
   font-size: 14px !important;
 }
+
+.snackbar-container {
+  background: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.mat-snack-bar-container {
+  background-color: #e8f5e9 !important; /* Verde claro */
+  color: #4caf50 !important;
+  border-radius: 8px;
+  padding: 0px !important;
+  box-shadow: none !important; /* Eliminar sombras */
+  margin: 0px !important;
+}
