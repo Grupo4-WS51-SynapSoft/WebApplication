@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { User } from '../../auth/model/User';
+import { User } from '../../../auth/model/User';
 
 @Component({
   selector: 'app-profile-settings',
