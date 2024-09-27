@@ -87,7 +87,7 @@
       "id": 1,
       "fullName": "Juan Pérez",
       "image": "https://randomuser.me/api/portraits/med/men/48.jpg",
-      "address": "Calle 123",
+      "address": "Surquillo",
       "description": "Don't worry, I'll take care of your loved one.",
       "rate": 4.4
     },
@@ -95,7 +95,7 @@
       "id": 2,
       "fullName": "María López",
       "image": "https://randomuser.me/api/portraits/med/women/48.jpg",
-      "address": "Avenida 456",
+      "address": "San Isidro",
       "description": "Experienced caregiver with a gentle touch.",
       "rate": 4.7
     },
@@ -103,7 +103,7 @@
       "id": 3,
       "fullName": "Carlos García",
       "image": "https://randomuser.me/api/portraits/med/men/49.jpg",
-      "address": "Boulevard 789",
+      "address": "Miraflores",
       "description": "Compassionate and reliable caregiver.",
       "rate": 4.5
     },
@@ -111,7 +111,7 @@
       "id": 4,
       "fullName": "Ana Martínez",
       "image": "https://randomuser.me/api/portraits/med/women/49.jpg",
-      "address": "Street 101",
+      "address": "Barranco",
       "description": "Dedicated to providing the best care.",
       "rate": 4.6
     },
@@ -119,7 +119,7 @@
       "id": 5,
       "fullName": "Luis Fernández",
       "image": "https://randomuser.me/api/portraits/med/men/50.jpg",
-      "address": "Road 202",
+      "address": "San Borja",
       "description": "Trustworthy and experienced caregiver.",
       "rate": 4.8
     },
@@ -127,7 +127,7 @@
       "id": 6,
       "fullName": "Laura Gómez",
       "image": "https://randomuser.me/api/portraits/med/women/50.jpg",
-      "address": "Lane 303",
+      "address": "La Molina",
       "description": "Caring and attentive to all needs.",
       "rate": 4.9
     },
@@ -135,7 +135,7 @@
       "id": 7,
       "fullName": "Jorge Díaz",
       "image": "https://randomuser.me/api/portraits/med/men/51.jpg",
-      "address": "Avenue 404",
+      "address": "San Miguel",
       "description": "Professional caregiver with years of experience.",
       "rate": 4.3
     },
@@ -143,7 +143,7 @@
       "id": 8,
       "fullName": "Elena Ruiz",
       "image": "https://randomuser.me/api/portraits/med/women/51.jpg",
-      "address": "Drive 505",
+      "address": "Lince",
       "description": "Patient and understanding caregiver.",
       "rate": 4.7
     },
@@ -151,7 +151,7 @@
       "id": 9,
       "fullName": "Pedro Sánchez",
       "image": "https://randomuser.me/api/portraits/med/men/52.jpg",
-      "address": "Way 606",
+      "address": "Jesús María",
       "description": "Reliable and compassionate care.",
       "rate": 4.4
     },
@@ -159,7 +159,7 @@
       "id": 10,
       "fullName": "Sofía Torres",
       "image": "https://randomuser.me/api/portraits/med/women/52.jpg",
-      "address": "Path 707",
+      "address": "Jesús María",
       "description": "Experienced in elderly care.",
       "rate": 4.6
     },
@@ -167,7 +167,7 @@
       "id": 11,
       "fullName": "Miguel Ramírez",
       "image": "https://randomuser.me/api/portraits/med/men/53.jpg",
-      "address": "Court 808",
+      "address": "San Juan de Miraflores",
       "description": "Dedicated to providing quality care.",
       "rate": 4.5
     },
@@ -175,7 +175,7 @@
       "id": 12,
       "fullName": "Isabel Morales",
       "image": "https://randomuser.me/api/portraits/med/women/53.jpg",
-      "address": "Terrace 909",
+      "address": "Villa El Salvador",
       "description": "Gentle and caring approach.",
       "rate": 4.8
     },
@@ -183,7 +183,7 @@
       "id": 13,
       "fullName": "Diego Ortiz",
       "image": "https://randomuser.me/api/portraits/med/men/54.jpg",
-      "address": "Square 1010",
+      "address": "Chorrillos",
       "description": "Professional and reliable caregiver.",
       "rate": 4.7
     },
@@ -191,7 +191,7 @@
       "id": 14,
       "fullName": "Lucía Herrera",
       "image": "https://randomuser.me/api/portraits/med/women/54.jpg",
-      "address": "Circle 1111",
+      "address": "Magdalena",
       "description": "Experienced in special needs care.",
       "rate": 4.9
     },
@@ -199,7 +199,7 @@
       "id": 15,
       "fullName": "Andrés Castro",
       "image": "https://randomuser.me/api/portraits/med/men/55.jpg",
-      "address": "Plaza 1212",
+      "address": "San Juan de Lurigancho",
       "description": "Caring and attentive to all needs.",
       "rate": 4.6
     },
@@ -207,7 +207,7 @@
       "id": 16,
       "fullName": "Valeria Rojas",
       "image": "https://randomuser.me/api/portraits/med/women/55.jpg",
-      "address": "Park 1313",
+      "address": "Surco",
       "description": "Patient and understanding caregiver.",
       "rate": 4.8
     },
@@ -215,7 +215,7 @@
       "id": 17,
       "fullName": "Fernando Vargas",
       "image": "https://randomuser.me/api/portraits/med/men/56.jpg",
-      "address": "Garden 1414",
+      "address": "Surco",
       "description": "Reliable and compassionate care.",
       "rate": 4.5
     },
@@ -223,7 +223,7 @@
       "id": 18,
       "fullName": "Gabriela Mendoza",
       "image": "https://randomuser.me/api/portraits/med/women/56.jpg",
-      "address": "Estate 1515",
+      "address": "Surco",
       "description": "Experienced in elderly care.",
       "rate": 4.7
     },
@@ -231,7 +231,7 @@
       "id": 19,
       "fullName": "Ricardo Silva",
       "image": "https://randomuser.me/api/portraits/med/men/57.jpg",
-      "address": "Villa 1616",
+      "address": "Magdalena",
       "description": "Dedicated to providing quality care.",
       "rate": 4.4
     },
@@ -239,7 +239,7 @@
       "id": 20,
       "fullName": "Natalia Romero",
       "image": "https://randomuser.me/api/portraits/med/women/57.jpg",
-      "address": "Mansion 1717",
+      "address": "Magdalena",
       "description": "Gentle and caring approach.",
       "rate": 4.9
     },
@@ -247,7 +247,7 @@
       "id": 21,
       "fullName": "Sebastián Reyes",
       "image": "https://randomuser.me/api/portraits/med/men/58.jpg",
-      "address": "House 1818",
+      "address": "Callao",
       "description": "Professional and reliable caregiver.",
       "rate": 4.6
     }
