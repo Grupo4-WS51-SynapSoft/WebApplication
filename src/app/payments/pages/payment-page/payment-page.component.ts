@@ -21,13 +21,13 @@ export class PaymentPageComponent {
   showForm = false;
   paymentSuccess: boolean = false;
 
-  // Método para agregar una nueva tarjeta
+
   addCard(newCard: Card) {
     this.cards.push(newCard);
     this.showForm = false;
   }
 
-  // Método para eliminar una tarjeta
+
   removeCard(card: Card) {
     this.cards = this.cards.filter(c => c !== card);
   }
