@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -11,6 +11,7 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -28,8 +29,8 @@ import {
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
-export class LoginComponent {
-  constructor(private router: Router) {}
+export class LoginComponent implements OnInit {
+  constructor(private router: Router, private authService: AuthService) {}
 
   userForm = new FormGroup({
     email: new FormControl(''),
@@ -43,7 +44,25 @@ export class LoginComponent {
     event.stopPropagation();
   }
 
+  ngOnInit() {
+    const user = window.localStorage.getItem('user');
+    if (user) this.router.navigate(['/search-caregiver']);
+
+    console.log('Hello world');
+  }
+
   login() {
-    this.router.navigate(['/search-caregiver']);
+    const { email, password } = this.userForm.value;
+
+    if (!email || !password) return;
+
+    this.authService.login(decodeURI(email), password).subscribe((res: any) => {
+      if (res.length) {
+        this.router.navigate(['/search-caregiver']);
+        window.localStorage.setItem('user', JSON.stringify(res[0]));
+      }
+    });
+
+    // this.router.navigate(['/search-caregiver']);
   }
 }

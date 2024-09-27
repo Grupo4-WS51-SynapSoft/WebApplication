@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
-import { LoginComponent } from './auth/login/login.component';
-import { SignUpComponent } from './auth/sign-up/sign-up.component';
+import { LoginComponent } from './auth/pages/login/login.component';
+import { SignUpComponent } from './auth/pages/sign-up/sign-up.component';
 import { HomeComponent } from './home/home/home.component';
 import { SearchPageComponent } from './search-caregivers/pages/search-page/search-page.component';
 import { CaregiverDetailComponent } from './search-caregivers/pages/caregiver-detail/caregiver-detail.component';

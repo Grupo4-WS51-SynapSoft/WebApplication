@@ -1,22 +1,27 @@
 <section class="main-section">
   <div class="card">
     <h2 class="card-title">Welcome!</h2>
-    <form class="form-container" (ngSubmit)="login()">
+    <form [formGroup]="userForm" class="form-container" (ngSubmit)="login()">
       <div class="form-field">
         <label class="form-field__label">Email</label>
         <mat-form-field appearance="outline">
-          <input matInput />
+          <input matInput formControlName="email" />
         </mat-form-field>
       </div>
 
       <div class="form-field">
         <label class="form-field__label">Password</label>
         <mat-form-field appearance="outline">
-          <input matInput [type]="showPassword ? 'text' : 'password'" />
+          <input
+            matInput
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+          />
           <button
             mat-icon-button
             matSuffix
             (click)="toggleShowPassword($event)"
+            type="button"
           >
             <mat-icon>{{
               showPassword ? "visibility" : "visibility_off"

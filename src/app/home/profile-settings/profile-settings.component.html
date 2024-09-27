@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div class="logout-wrapper">
-    <a class="logout-link" routerLink="/login">Logout</a>
+    <a class="logout-link" routerLink="/login" (click)="logout()">Logout</a>
   </div>
 
   <div class="profile-preview">
@@ -11,7 +11,7 @@
       />
     </div>
     <div class="profile-info-container">
-      <h3 class="profile-name">Pepito Flores</h3>
+      <h3 class="profile-name">{{ user?.fullName }}</h3>
       <p class="profile-role">Tutor</p>
     </div>
     <div class="profile-setting-container">
