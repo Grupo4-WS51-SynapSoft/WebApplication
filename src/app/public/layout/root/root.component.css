@@ -4,9 +4,10 @@
   height: 100dvh;
 }
 
-.sidebar-wrapper {
+.sidenav {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   flex-shrink: 0;
   width: 320px;
   height: 100%;
@@ -18,9 +19,19 @@
   );
 
   color: #fff;
+  border-radius: 0;
 }
 
-.main-content {
+.sidenav ::ng-deep .mat-drawer-inner-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.wrapper-content {
+  width: 100%;
+}
+.content {
   width: 100%;
   padding: 24px 40px;
   overflow-y: auto;
