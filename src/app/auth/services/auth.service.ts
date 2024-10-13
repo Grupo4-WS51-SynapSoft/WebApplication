@@ -9,12 +9,24 @@ import { catchError, map, retry } from 'rxjs';
 export class AuthService extends BaseService<User> {
   constructor() {
     super();
-    this.basePath = `${this.basePath}/users`;
+    this.basePath = `${this.basePath}`;
   }
 
-  login(email: string, password: string) {
+  loginAsTutor(email: string, password: string) {
     return this.http
-      .get<User[]>(this.basePath, {
+      .get<User[]>(`${this.basePath}/tutors`, {
+        params: { email, password },
+      })
+      .pipe(
+        retry(2),
+        catchError(this.handleError),
+        map((res) => res[0])
+      );
+  }
+
+  loginAsCaregiver(email: string, password: string) {
+    return this.http
+      .get<User[]>(`${this.basePath}/caregivers`, {
         params: { email, password },
       })
       .pipe(

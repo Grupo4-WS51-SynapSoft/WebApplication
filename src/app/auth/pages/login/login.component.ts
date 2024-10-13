@@ -61,13 +61,30 @@ export class LoginComponent implements OnInit {
 
     if (!email || !password) return;
 
-    this.authService.login(decodeURI(email), password).subscribe((user) => {
-      if (!user) return;
+    this.authService
+      .loginAsCaregiver(decodeURI(email), password)
+      .subscribe((user) => {
+        if (!user) {
+          this.authService
+            .loginAsTutor(decodeURI(email), password)
+            .subscribe((user) => {
+              if (!user) return;
+              window.localStorage.setItem(
+                'user',
+                JSON.stringify({ ...user, role: 'tutor' })
+              );
 
-      window.localStorage.setItem('user', JSON.stringify(user));
+              this.router.navigate(['/your-service']);
+            });
+        }
 
-      if (user.role === 'caregiver') this.router.navigate(['/your-service']);
-      else this.router.navigate(['/search-caregiver']);
-    });
+        window.localStorage.setItem(
+          'user',
+          JSON.stringify({ ...user, role: 'caregiver' })
+        );
+
+        if (user.role === 'caregiver') this.router.navigate(['/your-service']);
+        else this.router.navigate(['/search-caregiver']);
+      });
   }
 }

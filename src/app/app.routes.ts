@@ -7,6 +7,7 @@ import { SearchPageComponent } from './search-caregivers/pages/search-page/searc
 import { PaymentPageComponent } from './payments/pages/payment-page/payment-page.component';
 import { ReservationListComponent } from './reservations/pages/reservation-list/reservation-list.component';
 import { ServiceDetailComponent } from './search-caregivers/pages/service-detail/service-detail.component';
+import { PaymentHistoryComponent } from './payments/pages/payment-history/payment-history.component';
 
 export const routes: Routes = [
   {
@@ -27,7 +28,11 @@ export const routes: Routes = [
     component: RootLayout,
     children: [
       { path: 'search-caregiver', component: SearchPageComponent },
-      { path: 'payment', component: PaymentPageComponent },
+      {
+        path: 'payment',
+        component: PaymentPageComponent,
+      },
+      { path: 'payment/history', component: PaymentHistoryComponent },
       { path: 'search-caregiver/:id', component: ServiceDetailComponent },
       { path: 'your-reservations', component: ReservationListComponent },
     ],

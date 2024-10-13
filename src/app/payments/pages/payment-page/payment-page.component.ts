@@ -4,6 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { Card } from '../../model/card.entity';
+import { RouterLink } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
 import { CreateEditPaymentDialogComponent } from '../../components/create-edit-payment-dialog/create-edit-payment-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -22,6 +23,7 @@ import { PaymentCardComponent } from '../../components/payment-card/payment-card
     PaymentFormComponent,
     MatIcon,
     PaymentCardComponent,
+    RouterLink,
   ],
   templateUrl: './payment-page.component.html',
   styleUrl: './payment-page.component.css',
@@ -30,6 +32,7 @@ export class PaymentPageComponent implements OnInit {
   cards: Card[] = [];
   showForm = false;
   paymentSuccess: boolean = false;
+  user = JSON.parse(window.localStorage.getItem('user') || '{}');
 
   constructor(
     public dialog: MatDialog,
@@ -38,10 +41,11 @@ export class PaymentPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const user = JSON.parse(window.localStorage.getItem('user') || '{}');
-    this.paymentMethodsService.getByUserId(user.id).subscribe((cards) => {
-      this.cards = cards;
-    });
+    this.paymentMethodsService
+      .getByUserId(this.user.id, this.user.role)
+      .subscribe((cards) => {
+        this.cards = cards;
+      });
   }
 
   addEditCard(card?: Card) {

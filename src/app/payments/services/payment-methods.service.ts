@@ -12,9 +12,11 @@ export class PaymentMethodsService extends BaseService<Card> {
     this.basePath = `${this.basePath}/user-payment-methods`;
   }
 
-  getByUserId(userId: string) {
+  getByUserId(id: string, role: string) {
     return this.http
-      .get<Card[]>(`${this.basePath}?userId=${userId}`)
+      .get<Card[]>(
+        `${this.basePath}?${role === 'tutor' ? 'tutorId' : 'caregiverId'}=${id}`
+      )
       .pipe(retry(2), catchError(this.handleError));
   }
 }
