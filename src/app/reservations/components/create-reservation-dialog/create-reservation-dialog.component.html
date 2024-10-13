@@ -3,7 +3,10 @@
   <mat-stepper [linear]="false" #stepper>
     <mat-step [stepControl]="firstFormGroup" label="Select a schedule">
       <form [formGroup]="firstFormGroup">
-        <mat-form-field appearance="outline">
+        <mat-form-field
+          appearance="outline"
+          style="margin-top: 8px; width: 100%"
+        >
           <mat-label>Choose a date</mat-label>
           <input
             matInput
@@ -20,15 +23,27 @@
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Start Time</mat-label>
-          <input
-            matInput
-            formControlName="startTime"
-            placeholder="08:00 - 12:00"
-            required
-          />
-        </mat-form-field>
+        <div style="display: flex; gap: 12px; margin-top: 8px">
+          <mat-form-field appearance="outline" style="width: 100%">
+            <mat-label>Start Time</mat-label>
+            <input
+              matInput
+              formControlName="startTime"
+              placeholder="08:00"
+              required
+            />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" style="width: 100%">
+            <mat-label>End Time</mat-label>
+            <input
+              matInput
+              formControlName="endTime"
+              placeholder="18:00"
+              required
+            />
+          </mat-form-field>
+        </div>
         <div>
           <button mat-button matStepperNext>Next</button>
         </div>
@@ -38,18 +53,16 @@
     <mat-step [stepControl]="secondFormGroup" label="Select a payment">
       <form [formGroup]="secondFormGroup">
         <mat-selection-list formControlName="paymentOption" [multiple]="false">
-          <mat-list-option value="1">
-            <span matListItemTitle>JUAN PEREZ LOPEZ</span>
-            <span matListItemLine>**** **** **** 2123</span>
+          @for (card of cardList; track $index) {
+          <mat-list-option [value]="card">
+            <span matListItemTitle style="text-transform: uppercase">{{
+              card.cardHolder
+            }}</span>
+            <span matListItemLine
+              >**** **** **** {{ card.cardNumber.slice(-4) }}</span
+            >
           </mat-list-option>
-          <mat-list-option value="2">
-            <span matListItemTitle>JUAN PEREZ LOPEZ</span>
-            <span matListItemLine>**** **** **** 4568</span>
-          </mat-list-option>
-          <mat-list-option value="3">
-            <span matListItemTitle>JUAN PEREZ LOPEZ</span>
-            <span matListItemLine>**** **** **** 9875</span>
-          </mat-list-option>
+          }
         </mat-selection-list>
         <div>
           <button mat-button matStepperPrevious>Back</button>

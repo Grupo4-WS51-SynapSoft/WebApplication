@@ -3,7 +3,7 @@
 import { User } from '../../auth/model/user';
 
 export interface Reservation {
-  id: number;
+  id?: number;
   tutorId: number;
   caregiverId: number;
   serviceId: number;

@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
   Validators,
@@ -22,6 +22,10 @@ import {
   ServiceSearch,
 } from '../../../search-caregivers/model/service-search';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { PaymentMethodsService } from '../../../payments/services/payment-methods.service';
+import { Card } from '../../../payments/model/card.entity';
+import { ReservationService } from '../../services/reservation.service';
+import { Reservation } from '../../model/reservation';
 
 const dayLabels = {
   mon: 1,
@@ -51,12 +55,16 @@ const dayLabels = {
   templateUrl: './create-reservation-dialog.component.html',
   styleUrl: './create-reservation-dialog.component.css',
 })
-export class CreateReservationDialogComponent {
+export class CreateReservationDialogComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  cardList: Card[] = [];
+  user = JSON.parse(localStorage.getItem('user') || '{}');
 
   constructor(
     public dialogRef: MatDialogRef<CreateReservationDialogComponent>,
+    private paymentMethodsService: PaymentMethodsService,
+    private reservationService: ReservationService,
     @Inject(MAT_DIALOG_DATA) public data: ServiceSearch
   ) {
     const formBuilder = new FormBuilder();
@@ -64,24 +72,52 @@ export class CreateReservationDialogComponent {
     this.firstFormGroup = formBuilder.group({
       date: ['', Validators.required],
       startTime: ['', Validators.required],
+      endTime: ['', Validators.required],
     });
     this.secondFormGroup = formBuilder.group({
       paymentOption: ['', Validators.required],
     });
   }
 
+  ngOnInit() {
+    this.paymentMethodsService
+      .getByUserId(this.user?.id, this.user?.role)
+      .subscribe((cardList) => {
+        this.cardList = cardList;
+      });
+  }
+
   filterDates = (d: Date | null): boolean => {
     const day = (d || new Date()).getDay();
 
-    this.data.schedules.filter(
-      (schedule: ISchedule) =>
-        dayLabels[schedule.day as keyof typeof dayLabels] === day
+    const workingDays = this.data.schedules.map(
+      (schedule: ISchedule) => dayLabels[schedule.day as keyof typeof dayLabels]
     );
 
-    return day !== 0 && day !== 6;
+    return workingDays.includes(day);
   };
 
   createReservation() {
-    this.dialogRef.close('success');
+    const totalHours =
+      +this.firstFormGroup.value.endTime.split(':')[0] -
+      this.firstFormGroup.value.startTime.split(':')[0];
+
+    const reservation: Reservation = {
+      tutorId: this.user.id,
+      caregiverId: this.data.caregiver.id,
+      serviceId: this.data.id,
+      status: 'pending',
+      createdAt: new Date().toISOString(),
+      schedule: {
+        date: this.firstFormGroup.value.date,
+        startTime: this.firstFormGroup.value.startTime,
+        endTime: this.firstFormGroup.value.endTime,
+      },
+      totalFare: totalHours * this.data.farePerHour,
+    };
+
+    this.reservationService.create(reservation).subscribe(() => {
+      this.dialogRef.close('success');
+    });
   }
 }
