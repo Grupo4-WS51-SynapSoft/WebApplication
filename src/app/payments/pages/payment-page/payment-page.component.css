@@ -18,7 +18,9 @@ button[mat-raised-button] {
 }
 
 .card-list {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(328px, 1fr));
+  width: 100%;
   flex-wrap: wrap;
   gap: 20px;
 }

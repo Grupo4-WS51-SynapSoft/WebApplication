@@ -74,20 +74,20 @@
   "payments": [],
   "user-payment-methods": [
     {
-      "id": 1,
-      "userId": 1,
-      "cardNumber": "1234567890123456",
-      "expirationDate": "12/24",
-      "cvv": "123",
-      "cardHolder": "Juan Pérez"
-    },
-    {
       "id": 3,
       "userId": 2,
       "cardNumber": "1234567890123456",
       "expirationDate": "12/24",
       "cvv": "123",
       "cardHolder": "María López"
+    },
+    {
+      "cardNumber": "5555 1231 5555 5321",
+      "cardHolder": "JOHN DOE MUCHACHO PRUEBA",
+      "cvv": "790",
+      "expirationDate": "11/24",
+      "userId": 1,
+      "id": 4
     }
   ]
 }

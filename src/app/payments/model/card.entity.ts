@@ -1,12 +1,14 @@
 export class Card {
   id?: number;
-  cardHolderName: string;
+  cardHolder: string;
   cardNumber: string;
   expirationDate: string;
   cvv: string;
+  userId: number;
 
   constructor() {
-    this.cardHolderName = '';
+    this.userId = 0;
+    this.cardHolder = '';
     this.cardNumber = '';
     this.expirationDate = '';
     this.cvv = '';

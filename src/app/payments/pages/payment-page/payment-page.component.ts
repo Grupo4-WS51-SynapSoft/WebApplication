@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PaymentMethodsService } from '../../services/payment-methods.service';
 import { DeletePaymentDialogComponent } from '../../components/delete-payment-dialog/delete-payment-dialog.component';
+import { PaymentCardComponent } from '../../components/payment-card/payment-card.component';
 
 @Component({
   selector: 'app-payment-page',
@@ -20,19 +21,13 @@ import { DeletePaymentDialogComponent } from '../../components/delete-payment-di
     MatButtonModule,
     PaymentFormComponent,
     MatIcon,
+    PaymentCardComponent,
   ],
   templateUrl: './payment-page.component.html',
   styleUrl: './payment-page.component.css',
 })
 export class PaymentPageComponent implements OnInit {
-  cards: Card[] = [
-    {
-      cardHolderName: 'John Doe',
-      cardNumber: '1234 5678 9012 3456',
-      expirationDate: '12/24',
-      cvv: '123',
-    },
-  ];
+  cards: Card[] = [];
   showForm = false;
   paymentSuccess: boolean = false;
 
@@ -49,16 +44,28 @@ export class PaymentPageComponent implements OnInit {
     });
   }
 
-  addCard() {
-    const dialogRef = this.dialog.open(CreateEditPaymentDialogComponent);
+  addEditCard(card?: Card) {
+    const editMode = !!card?.id;
+
+    const dialogRef = this.dialog.open(CreateEditPaymentDialogComponent, {
+      data: editMode ? card : null,
+    });
 
     dialogRef.afterClosed().subscribe((card) => {
-      if (card) {
-        this.cards.push(card);
-        this.snackBar.open('Card added successfully', 'Close', {
-          duration: 2000,
-        });
-      }
+      if (!card) return;
+
+      if (editMode) {
+        const index = this.cards.findIndex((c) => c.id === card.id);
+        this.cards[index] = card;
+      } else this.cards.push(card);
+
+      const message = editMode
+        ? 'Card updated successfully'
+        : 'Card added successfully';
+
+      this.snackBar.open(message, 'Close', {
+        duration: 2000,
+      });
     });
   }
 
