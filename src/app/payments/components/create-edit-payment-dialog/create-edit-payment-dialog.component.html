@@ -1,0 +1,33 @@
+<h2 mat-dialog-title class="dialog-title">Add a new card</h2>
+<mat-dialog-content>
+  <form [formGroup]="cardForm" class="card-form" (submit)="onAddCard()">
+    <mat-form-field appearance="outline" class="form-field--full">
+      <mat-label>Card number</mat-label>
+      <input matInput formControlName="cardNumber" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field--full">
+      <mat-label>Card holder</mat-label>
+      <input matInput formControlName="cardHolder" required />
+    </mat-form-field>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Exp. Date</mat-label>
+        <input matInput formControlName="expirationDate" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>CVV</mat-label>
+        <input matInput formControlName="cvv" required />
+      </mat-form-field>
+    </div>
+  </form>
+
+  <mat-dialog-actions align="end">
+    <button class="btn btn--secondary" mat-button (click)="onCancel()">
+      Cancel
+    </button>
+    <button class="btn btn--primary" mat-flat-button>Add</button>
+  </mat-dialog-actions>
+</mat-dialog-content>

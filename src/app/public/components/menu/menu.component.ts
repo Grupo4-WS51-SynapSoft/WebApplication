@@ -35,6 +35,12 @@ export class MenuComponent implements OnInit {
       role: 'tutor',
     },
     {
+      name: 'Payment methods',
+      link: '/payment',
+      icon: 'credit_card',
+      role: 'all',
+    },
+    {
       name: 'Your service',
       link: '/your-service',
       icon: 'book-open-blank-variant-outline',
@@ -52,7 +58,7 @@ export class MenuComponent implements OnInit {
     if (!this.user) return;
 
     this.filteredMenuList = this.menuList.filter(
-      (menu) => menu.role === this.user?.role
+      (menu) => menu.role === this.user?.role || menu.role === 'all'
     );
   }
 
