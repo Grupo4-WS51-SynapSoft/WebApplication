@@ -1,0 +1,12 @@
+<section>
+  <header>
+    <h1 class="header-title">Reservations</h1>
+  </header>
+
+  <div class="reservation-list">
+    <app-reservation-card
+      *ngFor="let reservation of reservationList"
+      [reservation]="reservation"
+    ></app-reservation-card>
+  </div>
+</section>

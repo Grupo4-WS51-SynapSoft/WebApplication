@@ -1,0 +1,135 @@
+<section>
+  <header class="section-header">
+    <h1 class="header-title">
+      Detail of {{ serviceSearch?.caregiver?.fullName }}’s caregiver service
+    </h1>
+
+    <a class="go-back-btn" routerLink="../">
+      <mat-icon>arrow_back</mat-icon>
+      <span>Go back</span>
+    </a>
+  </header>
+
+  <div class="caregiver-section">
+    <mat-card class="caregiver-preview-card">
+      <mat-card-header>
+        <img
+          class="caregiver-img"
+          [src]="serviceSearch?.caregiver?.profileImg"
+          [alt]="serviceSearch?.caregiver?.fullName"
+        />
+      </mat-card-header>
+      <mat-card-content>
+        <p class="caregiver-card-name">
+          {{ serviceSearch?.caregiver?.fullName }}
+        </p>
+
+        <div class="caregiver-card-list">
+          <div class="caregiver-card-item">
+            <mat-icon>person</mat-icon>
+            <span>24 years old</span>
+          </div>
+
+          <div class="caregiver-card-item">
+            <mat-icon>place</mat-icon>
+            <span
+              >{{ serviceSearch?.caregiver?.address }},
+              {{ serviceSearch?.caregiver?.district }}</span
+            >
+          </div>
+
+          <div class="caregiver-card-item">
+            <mat-icon>schedule</mat-icon>
+            <span>2 years in SafeChild</span>
+          </div>
+
+          <div class="caregiver-card-item">
+            <mat-icon>work</mat-icon>
+            <span>42 services realized</span>
+          </div>
+
+          <div class="caregiver-card-item">
+            <mat-icon>mood</mat-icon>
+            <span>Excellent caregiver!!!</span>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-flat-button class="btn btn-primary" (click)="openDialog()">
+          <mat-icon>book</mat-icon>
+          <span>Reservate</span>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <div style="display: flex; flex-direction: column; gap: 16px">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Biography</mat-card-title>
+          <mat-card-subtitle
+            >See more about
+            {{ serviceSearch?.caregiver?.fullName }}</mat-card-subtitle
+          >
+        </mat-card-header>
+        <mat-card-content>
+          {{ serviceSearch?.description }}
+        </mat-card-content>
+      </mat-card>
+
+      <div style="display: flex; gap: 16px">
+        <mat-card style="flex-grow: 1; width: 100%">
+          <mat-card-header>
+            <mat-card-title>Schedule</mat-card-title>
+            <mat-card-subtitle>See your options</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <table mat-table [dataSource]="serviceSearch?.schedules ?? []">
+              <ng-container matColumnDef="day">
+                <th mat-header-cell *matHeaderCellDef>Days</th>
+                <td mat-cell *matCellDef="let element">{{ element.day }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="startHour">
+                <th mat-header-cell *matHeaderCellDef>Start hour</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.workHours.startTime }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="endHour">
+                <th mat-header-cell *matHeaderCellDef>End hour</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.workHours.endTime }}
+                </td>
+              </ng-container>
+
+              <tr
+                mat-header-row
+                *matHeaderRowDef="displayedScheduleColumns"
+              ></tr>
+              <tr
+                mat-row
+                *matRowDef="let row; columns: displayedScheduleColumns"
+              ></tr>
+            </table>
+          </mat-card-content>
+        </mat-card>
+        <mat-card style="flex-grow: 1; width: 100%">
+          <mat-card-header>
+            <mat-card-title>Places & Fare</mat-card-title>
+            <mat-card-subtitle>See more options</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-chip-set>
+              @for (places of serviceSearch?.workaround; track $index) {
+              <mat-chip>{{ places }}</mat-chip>
+              }
+            </mat-chip-set>
+            <p style="font-weight: 600">Fare per hour:</p>
+            <p>S/ {{ (serviceSearch?.farePerHour ?? 0 / 100).toFixed(2) }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</section>
