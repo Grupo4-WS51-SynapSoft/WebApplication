@@ -68,7 +68,9 @@ export class ServiceDetailComponent implements OnInit {
           ? 'Reservation created'
           : 'Reservation not created';
 
-      this.snackBar.open(message, 'Close');
+      this.snackBar.open(message, 'Close', {
+        duration: 2000,
+      });
     });
   }
 }

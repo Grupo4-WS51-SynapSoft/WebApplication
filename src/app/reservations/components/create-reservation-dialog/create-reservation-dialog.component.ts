@@ -26,6 +26,8 @@ import { PaymentMethodsService } from '../../../payments/services/payment-method
 import { Card } from '../../../payments/model/card.entity';
 import { ReservationService } from '../../services/reservation.service';
 import { Reservation } from '../../model/reservation';
+import { PaymentService } from '../../../payments/services/payment.service';
+import { Payment } from '../../../payments/model/payment.entity';
 
 const dayLabels = {
   mon: 1,
@@ -65,6 +67,7 @@ export class CreateReservationDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<CreateReservationDialogComponent>,
     private paymentMethodsService: PaymentMethodsService,
     private reservationService: ReservationService,
+    private paymentService: PaymentService,
     @Inject(MAT_DIALOG_DATA) public data: ServiceSearch
   ) {
     const formBuilder = new FormBuilder();
@@ -115,6 +118,22 @@ export class CreateReservationDialogComponent implements OnInit {
       },
       totalFare: totalHours * this.data.farePerHour,
     };
+
+    const payment: Payment = {
+      tutorId: this.user.id,
+      caregiverId: this.data.caregiver.id,
+      serviceId: this.data.id,
+      totalAmount: reservation.totalFare,
+      date: new Date().toISOString(),
+      tutorPaymentMethodId: this.secondFormGroup.value.paymentOption[0].id,
+      tutorPaymentMethod: this.secondFormGroup.value.paymentOption[0],
+    };
+
+    console.log(payment);
+
+    this.paymentService.create(payment).subscribe(() => {
+      console.log('Payment created');
+    });
 
     this.reservationService.create(reservation).subscribe(() => {
       this.dialogRef.close('success');

@@ -4,10 +4,12 @@ export class Card {
   cardNumber: string;
   expirationDate: string;
   cvv: string;
-  userId: number;
+  tutorId?: number;
+  caregiverId?: number;
 
   constructor() {
-    this.userId = 0;
+    this.tutorId = 0;
+    this.caregiverId = 0;
     this.cardHolder = '';
     this.cardNumber = '';
     this.expirationDate = '';

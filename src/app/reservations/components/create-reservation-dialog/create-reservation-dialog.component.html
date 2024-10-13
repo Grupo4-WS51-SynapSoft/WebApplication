@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>Reserve your service</h2>
 <mat-dialog-content>
-  <mat-stepper [linear]="false" #stepper>
+  <mat-stepper [linear]="true" #stepper>
     <mat-step [stepControl]="firstFormGroup" label="Select a schedule">
       <form [formGroup]="firstFormGroup">
         <mat-form-field
@@ -44,9 +44,9 @@
             />
           </mat-form-field>
         </div>
-        <div>
+        <mat-dialog-actions align="end">
           <button mat-button matStepperNext>Next</button>
-        </div>
+        </mat-dialog-actions>
       </form>
     </mat-step>
 
@@ -64,10 +64,10 @@
           </mat-list-option>
           }
         </mat-selection-list>
-        <div>
+        <mat-dialog-actions align="end">
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button (click)="createReservation()">Done</button>
-        </div>
+        </mat-dialog-actions>
       </form>
     </mat-step>
   </mat-stepper>

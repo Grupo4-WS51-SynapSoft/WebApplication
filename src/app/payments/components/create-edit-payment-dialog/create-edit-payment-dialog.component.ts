@@ -65,19 +65,24 @@ export class CreateEditPaymentDialogComponent {
   }
 
   onAddCard() {
-    this.paymentMethodsService
-      .create({
-        ...this.cardForm.value,
-        userId: this.user.id,
-      })
-      .subscribe((card) => {
-        this.dialogRef.close(card);
-      });
+    const card: Card = {
+      cardHolder: this.cardForm.value.cardHolder ?? '',
+      cardNumber: this.cardForm.value.cardNumber ?? '',
+      cvv: this.cardForm.value.cvv ?? '',
+      expirationDate: '12/23',
+    };
+
+    if (this.user.role === 'tutor') card.tutorId = this.user.id;
+    else if (this.user.role === 'caregiver') card.caregiverId = this.user.id;
+
+    this.paymentMethodsService.create(card).subscribe((card) => {
+      this.dialogRef.close(card);
+    });
   }
 
   onEditCard() {
     this.paymentMethodsService
-      .update(this.data?.id, { ...this.cardForm.value, userId: this.user.id })
+      .patch(this.data?.id, this.cardForm.value)
       .subscribe((card) => this.dialogRef.close(card));
   }
 

@@ -7,7 +7,7 @@ export class Payment {
   caregiverId: number;
   serviceId: number;
   tutorPaymentMethodId: number;
-  caregiverPaymentMethodId: number;
+  caregiverPaymentMethodId?: number;
   totalAmount: number;
   date: string;
 
