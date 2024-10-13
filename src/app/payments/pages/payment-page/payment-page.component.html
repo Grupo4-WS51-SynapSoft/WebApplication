@@ -5,9 +5,20 @@
     and setting up preferred payment methods for a seamless checkout experience.
   </p>
 
-  <button mat-raised-button color="primary" (click)="addEditCard()">
-    <mat-icon>add</mat-icon> Add a card
-  </button>
+  <div class="action-buttons">
+    <button
+      mat-flat-button
+      color="primary"
+      class="btn btn--add-card"
+      (click)="addEditCard()"
+    >
+      <mat-icon>add</mat-icon> Add a card
+    </button>
+    <button mat-stroked-button class="btn btn--history">
+      <mat-icon>history</mat-icon>
+      History
+    </button>
+  </div>
 
   <div class="card-list">
     <app-payment-card

@@ -56,3 +56,23 @@ button[mat-icon-button] {
   font-size: 14px;
   color: #888;
 }
+
+.btn {
+  border-radius: 5px;
+}
+
+.btn--add-card {
+  background-color: #156683 !important;
+  color: white;
+}
+
+.btn--history {
+  color: #156683 !important;
+  border-color: #156683 !important;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
