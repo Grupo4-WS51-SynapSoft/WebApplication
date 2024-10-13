@@ -1,5 +1,17 @@
 {
-  "users": [
+  "caregivers": [
+    {
+      "id": 1,
+      "fullName": "María López",
+      "email": "maria.lopez@example.com",
+      "phone": "987654322",
+      "document": "00000001",
+      "password": "maria123",
+      "profileImg": "https://randomuser.me/api/portraits/med/women/49.jpg",
+      "address": "Av. Los Pinos 123, San Miguel"
+    }
+  ],
+  "tutors": [
     {
       "id": 1,
       "fullName": "Juan Pérez",
@@ -8,25 +20,15 @@
       "document": "00000000",
       "password": "juan123",
       "profileImg": "https://randomuser.me/api/portraits/med/men/48.jpg",
-      "role": "tutor"
-    },
-    {
-      "id": 2,
-      "fullName": "María López",
-      "email": "maria.lopez@example.com",
-      "phone": "987654322",
-      "document": "00000001",
-      "password": "maria123",
-      "profileImg": "https://randomuser.me/api/portraits/med/women/49.jpg",
-      "role": "caregiver"
+      "address": "Av. La Marian 123, San Miguel"
     }
   ],
   "services": [
     {
       "id": 1,
-      "caregiverId": 2,
+      "caregiverId": 1,
       "description": "Don't worry, I'll take care of your loved one with the utmost dedication and care. I understand the importance of providing a safe and nurturing environment, and I am committed to ensuring that your loved one feels comfortable and well-cared for at all times. My approach is centered on empathy, patience, and a genuine passion for caregiving. I strive to create a positive and supportive atmosphere where your loved one can thrive and feel valued. Whether it's through engaging activities, attentive care, or simply being a comforting presence, I am here to provide the best possible care for your loved one.",
-      "schedule": [
+      "schedules": [
         {
           "day": "mon",
           "workHours": { "startTime": "08:00", "endTime": "16:00" }
@@ -67,20 +69,18 @@
   "payments": [
     {
       "id": 1,
-      "userId": 1,
       "reservationId": 1,
-      "userPaymentMethodId": 1,
+      "tutorPaymentMethodId": 1,
+      "caregiverPaymentMethodId": 3,
       "amount": 30.0,
-      "operation": "payment",
       "createdAt": "2024-08-11"
     },
     {
       "id": 2,
-      "userId": 2,
       "reservationId": 1,
-      "userPaymentMethodId": 2,
       "amount": 30.0,
-      "operation": "retrieve",
+      "tutorPaymentMethodId": 2,
+      "caregiverPaymentMethodId": 3,
       "createdAt": "2024-08-11"
     }
   ],
