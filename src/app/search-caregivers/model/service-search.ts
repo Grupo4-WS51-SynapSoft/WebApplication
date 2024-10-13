@@ -11,7 +11,7 @@ export interface ServiceSearch {
   rating: number;
 }
 
-interface Schedule {
+export interface Schedule {
   day: string;
   workHours: {
     startTime: string;

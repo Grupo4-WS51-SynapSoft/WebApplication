@@ -37,6 +37,7 @@
 .caregiver-preview-card {
   width: 340px;
   flex-shrink: 0;
+  align-self: flex-start;
 }
 
 .caregiver-biography-content {

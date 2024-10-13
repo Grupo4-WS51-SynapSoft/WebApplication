@@ -4,8 +4,8 @@ import { LoginComponent } from './auth/pages/login/login.component';
 import { SignUpComponent } from './auth/pages/sign-up/sign-up.component';
 import { RootComponent as RootLayout } from './public/layout/root/root.component';
 import { SearchPageComponent } from './search-caregivers/pages/search-page/search-page.component';
-import { CaregiverDetailComponent } from './search-caregivers/pages/caregiver-detail/caregiver-detail.component';
 import { ReservationListComponent } from './reservations/pages/reservation-list/reservation-list.component';
+import { ServiceDetailComponent } from './search-caregivers/pages/service-detail/service-detail.component';
 
 export const routes: Routes = [
   {
@@ -26,7 +26,7 @@ export const routes: Routes = [
     component: RootLayout,
     children: [
       { path: 'search-caregiver', component: SearchPageComponent },
-      { path: 'search-caregiver/:id', component: CaregiverDetailComponent },
+      { path: 'search-caregiver/:id', component: ServiceDetailComponent },
       { path: 'your-reservations', component: ReservationListComponent },
     ],
   },
