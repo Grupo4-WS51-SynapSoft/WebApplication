@@ -33,61 +33,46 @@
       "schedules": [
         {
           "day": "mon",
-          "workHours": { "startTime": "08:00", "endTime": "16:00" }
+          "workHours": {
+            "startTime": "08:00",
+            "endTime": "16:00"
+          }
         },
         {
           "day": "tue",
-          "workHours": { "startTime": "08:00", "endTime": "16:00" }
+          "workHours": {
+            "startTime": "08:00",
+            "endTime": "16:00"
+          }
         },
         {
           "day": "thu",
-          "workHours": { "startTime": "08:00", "endTime": "16:00" }
+          "workHours": {
+            "startTime": "08:00",
+            "endTime": "16:00"
+          }
         },
         {
           "day": "fri",
-          "workHours": { "startTime": "08:00", "endTime": "12:00" }
+          "workHours": {
+            "startTime": "08:00",
+            "endTime": "12:00"
+          }
         }
       ],
-      "workaround": ["San Miguel", "Magdalena", "Surquillo", "San Isidro"],
+      "workaround": [
+        "San Miguel",
+        "Magdalena",
+        "Surquillo",
+        "San Isidro"
+      ],
       "farePerHour": 3.2,
       "rating": 4.5
     }
   ],
-  "reservations": [
-    {
-      "id": 1,
-      "tutorId": 1,
-      "caregiverId": 2,
-      "status": "pending",
-      "schedule": {
-        "date": "2021-12-03",
-        "startTime": "08:00",
-        "endTime": "12:00"
-      },
-      "location": "Surquillo",
-      "totalFare": 30.0,
-      "createdAt": "2024-08-11"
-    }
-  ],
-  "payments": [
-    {
-      "id": 1,
-      "reservationId": 1,
-      "tutorPaymentMethodId": 1,
-      "caregiverPaymentMethodId": 3,
-      "amount": 30.0,
-      "createdAt": "2024-08-11"
-    },
-    {
-      "id": 2,
-      "reservationId": 1,
-      "amount": 30.0,
-      "tutorPaymentMethodId": 2,
-      "caregiverPaymentMethodId": 3,
-      "createdAt": "2024-08-11"
-    }
-  ],
-  "userPaymentMethods": [
+  "reservations": [],
+  "payments": [],
+  "user-payment-methods": [
     {
       "id": 1,
       "userId": 1,
@@ -95,14 +80,6 @@
       "expirationDate": "12/24",
       "cvv": "123",
       "cardHolder": "Juan Pérez"
-    },
-    {
-      "id": 2,
-      "userId": 1,
-      "cardNumber": "8888888888888888",
-      "expirationDate": "12/25",
-      "cvv": "999",
-      "cardHolder": "Juan Pérez Francisco"
     },
     {
       "id": 3,

@@ -32,7 +32,7 @@ export class BaseService<T> {
     );
   }
 
-  protected create(item: any): Observable<T> {
+  create(item: any): Observable<T> {
     return this.http
       .post<T>(this.basePath, JSON.stringify(item), this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
