@@ -1,12 +1,20 @@
-import { User } from '../../auth/model/user';
 // import { CaregiverServiceModel } from '../../search-caregivers/model/CaregiverService';
 
+import { User } from '../../auth/model/user';
+
 export interface Reservation {
-  user: User;
-  'search-caregiver': any;
-  date: string;
-  startTime: string;
-  endTime: string;
+  id: number;
+  tutorId: number;
+  caregiverId: number;
+  serviceId: number;
+  status: string;
+  createdAt: string;
+  schedule: {
+    date: string;
+    startTime: string;
+    endTime: string;
+  };
+  tutor?: User;
+  caregiver?: User;
   totalFare: number;
-  location: string;
 }

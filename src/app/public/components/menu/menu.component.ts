@@ -30,9 +30,9 @@ export class MenuComponent implements OnInit {
     },
     {
       name: 'Your Reservations',
-      link: '/your-reservations',
+      link: '/reservations',
       icon: 'book-open-blank-variant-outline',
-      role: 'tutor',
+      role: 'all',
     },
     {
       name: 'Payment methods',

@@ -60,12 +60,32 @@
           }
         }
       ],
-      "workaround": ["San Miguel", "Magdalena", "Surquillo", "San Isidro"],
+      "workaround": [
+        "San Miguel",
+        "Magdalena",
+        "Surquillo",
+        "San Isidro"
+      ],
       "farePerHour": 3.2,
       "rating": 4.5
     }
   ],
-  "reservations": [],
+  "reservations": [
+    {
+      "id": 1,
+      "tutorId": 1,
+      "caregiverId": 1,
+      "serviceId": 1,
+      "status": "completed",
+      "createdAt": "2021-12-01",
+      "schedule": {
+        "date": "2021-12-04",
+        "startTime": "08:00",
+        "endTime": "16:00"
+      },
+      "totalFare": 11.9
+    }
+  ],
   "payments": [
     {
       "id": 1,
@@ -74,7 +94,6 @@
       "serviceId": 1,
       "tutorPaymentMethodId": 4,
       "caregiverPaymentMethodId": 3,
-
       "tutorPaymentMethod": {
         "cardNumber": "5555 1231 5555 5321",
         "cardHolder": "JUAN PEREZ GONZALES ABARCÓN",
