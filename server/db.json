@@ -60,12 +60,7 @@
           }
         }
       ],
-      "workaround": [
-        "San Miguel",
-        "Magdalena",
-        "Surquillo",
-        "San Isidro"
-      ],
+      "workaround": ["San Miguel", "Magdalena", "Surquillo", "San Isidro"],
       "farePerHour": 3.2,
       "rating": 4.5
     }
@@ -83,7 +78,7 @@
     },
     {
       "cardNumber": "5555 1231 5555 5321",
-      "cardHolder": "JOHN DOE MUCHACHO PRUEBA",
+      "cardHolder": "JUAN PEREZ GONZALES ABARCÓN",
       "cvv": "790",
       "expirationDate": "11/24",
       "userId": 1,
