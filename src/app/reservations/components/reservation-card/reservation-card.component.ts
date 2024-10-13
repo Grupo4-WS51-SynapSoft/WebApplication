@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Reservation } from '../../model/reservation';
-import { User } from '../../../auth/model/User';
+import { User } from '../../../auth/model/user';
 
 @Component({
   selector: 'app-reservation-card',

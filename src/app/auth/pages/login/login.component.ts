@@ -12,6 +12,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { User } from '../../model/user';
 
 @Component({
   selector: 'app-login',
@@ -45,10 +46,14 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    const user = window.localStorage.getItem('user');
-    if (user) this.router.navigate(['/search-caregiver']);
+    const data = window.localStorage.getItem('user');
 
-    console.log('Hello world');
+    const user: User | null = data ? JSON.parse(data) : null;
+
+    if (!user) return;
+
+    if (user.role === 'caregiver') this.router.navigate(['/your-service']);
+    else this.router.navigate(['/search-caregiver']);
   }
 
   login() {
@@ -56,13 +61,13 @@ export class LoginComponent implements OnInit {
 
     if (!email || !password) return;
 
-    this.authService.login(decodeURI(email), password).subscribe((res: any) => {
-      if (res.length) {
-        this.router.navigate(['/search-caregiver']);
-        window.localStorage.setItem('user', JSON.stringify(res[0]));
-      }
-    });
+    this.authService.login(decodeURI(email), password).subscribe((user) => {
+      if (!user) return;
 
-    // this.router.navigate(['/search-caregiver']);
+      window.localStorage.setItem('user', JSON.stringify(user));
+
+      if (user.role === 'caregiver') this.router.navigate(['/your-service']);
+      else this.router.navigate(['/search-caregiver']);
+    });
   }
 }

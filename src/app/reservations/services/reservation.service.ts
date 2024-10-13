@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from '../../shared/services/base.service';
 import { Reservation } from '../model/reservation';
-import { User } from '../../auth/model/User';
+import { User } from '../../auth/model/user';
 import { catchError, retry } from 'rxjs';
 
 @Injectable({

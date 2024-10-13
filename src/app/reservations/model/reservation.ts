@@ -1,4 +1,4 @@
-import { User } from '../../auth/model/User';
+import { User } from '../../auth/model/user';
 import { CaregiverServiceModel } from '../../search-caregivers/model/CaregiverService';
 
 export interface Reservation {

@@ -13,7 +13,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from '../../model/User';
+import { User } from '../../model/user';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -69,6 +69,7 @@ export class SignUpComponent {
       phone: this.userForm.value.phone || '',
       password: this.userForm.value.password || '',
       role: 'tutor',
+      profileImg: '',
     };
 
     if (this.userForm.value.password !== this.userForm.value.rePassword) return;
