@@ -1,11 +1,13 @@
 import { Routes } from '@angular/router';
 
-import { LoginComponent } from './auth/login/login.component';
-import { SignUpComponent } from './auth/sign-up/sign-up.component';
-import { HomeComponent } from './home/home/home.component';
+import { LoginComponent } from './auth/pages/login/login.component';
+import { SignUpComponent } from './auth/pages/sign-up/sign-up.component';
+import { RootComponent as RootLayout } from './public/layout/root/root.component';
 import { SearchPageComponent } from './search-caregivers/pages/search-page/search-page.component';
-import { CaregiverDetailComponent } from './search-caregivers/pages/caregiver-detail/caregiver-detail.component';
-import {ReservationPageComponent} from "./reservations/page/reservation-page/reservation-page.component";
+import { PaymentPageComponent } from './payments/pages/payment-page/payment-page.component';
+import { ReservationListComponent } from './reservations/pages/reservation-list/reservation-list.component';
+import { ServiceDetailComponent } from './search-caregivers/pages/service-detail/service-detail.component';
+import { PaymentHistoryComponent } from './payments/pages/payment-history/payment-history.component';
 
 export const routes: Routes = [
   {
@@ -23,11 +25,16 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: HomeComponent,
+    component: RootLayout,
     children: [
       { path: 'search-caregiver', component: SearchPageComponent },
-      { path: 'search-caregiver/:id', component: CaregiverDetailComponent },
-      { path:'reservations', component: ReservationPageComponent},
+      {
+        path: 'payment',
+        component: PaymentPageComponent,
+      },
+      { path: 'payment/history', component: PaymentHistoryComponent },
+      { path: 'search-caregiver/:id', component: ServiceDetailComponent },
+      { path: 'your-reservations', component: ReservationListComponent },
     ],
   },
 ];

@@ -1,0 +1,116 @@
+{
+  "caregivers": [
+    {
+      "id": 1,
+      "fullName": "María López",
+      "email": "maria.lopez@example.com",
+      "phone": "987654322",
+      "document": "00000001",
+      "password": "maria123",
+      "profileImg": "https://randomuser.me/api/portraits/med/women/49.jpg",
+      "address": "Av. Los Pinos 123",
+      "district": "San Miguel"
+    }
+  ],
+  "tutors": [
+    {
+      "id": 1,
+      "fullName": "Juan Pérez",
+      "email": "juan.perez@example.com",
+      "phone": "987654321",
+      "document": "00000000",
+      "password": "juan123",
+      "profileImg": "https://randomuser.me/api/portraits/med/men/48.jpg",
+      "address": "Av. La Marina 123",
+      "district": "San Miguel"
+    }
+  ],
+  "services": [
+    {
+      "id": 1,
+      "caregiverId": 1,
+      "description": "Don't worry, I'll take care of your loved one with the utmost dedication and care. I understand the importance of providing a safe and nurturing environment, and I am committed to ensuring that your loved one feels comfortable and well-cared for at all times. My approach is centered on empathy, patience, and a genuine passion for caregiving. I strive to create a positive and supportive atmosphere where your loved one can thrive and feel valued. Whether it's through engaging activities, attentive care, or simply being a comforting presence, I am here to provide the best possible care for your loved one.",
+      "schedules": [
+        {
+          "day": "mon",
+          "workHours": {
+            "startTime": "08:00",
+            "endTime": "16:00"
+          }
+        },
+        {
+          "day": "tue",
+          "workHours": {
+            "startTime": "08:00",
+            "endTime": "16:00"
+          }
+        },
+        {
+          "day": "thu",
+          "workHours": {
+            "startTime": "08:00",
+            "endTime": "16:00"
+          }
+        },
+        {
+          "day": "fri",
+          "workHours": {
+            "startTime": "08:00",
+            "endTime": "12:00"
+          }
+        }
+      ],
+      "workaround": ["San Miguel", "Magdalena", "Surquillo", "San Isidro"],
+      "farePerHour": 3.2,
+      "rating": 4.5
+    }
+  ],
+  "reservations": [],
+  "payments": [
+    {
+      "id": 1,
+      "tutorId": 1,
+      "caregiverId": 1,
+      "serviceId": 1,
+      "tutorPaymentMethodId": 4,
+      "caregiverPaymentMethodId": 3,
+
+      "tutorPaymentMethod": {
+        "cardNumber": "5555 1231 5555 5321",
+        "cardHolder": "JUAN PEREZ GONZALES ABARCÓN",
+        "cvv": "790",
+        "expirationDate": "11/24",
+        "userId": 1,
+        "id": 4
+      },
+      "caregiverPaymentMethod": {
+        "id": 3,
+        "userId": 2,
+        "cardNumber": "1234567890123456",
+        "expirationDate": "12/24",
+        "cvv": "123",
+        "cardHolder": "María López"
+      },
+      "totalAmount": 25.6,
+      "date": "2021-12-01"
+    }
+  ],
+  "user-payment-methods": [
+    {
+      "id": 3,
+      "caregiverId": 1,
+      "cardNumber": "1234567890123456",
+      "expirationDate": "12/24",
+      "cvv": "123",
+      "cardHolder": "María López"
+    },
+    {
+      "cardNumber": "5555 1231 5555 5321",
+      "cardHolder": "JUAN PEREZ GONZALES ABARCÓN",
+      "cvv": "790",
+      "expirationDate": "11/24",
+      "tutorId": 1,
+      "id": 4
+    }
+  ]
+}

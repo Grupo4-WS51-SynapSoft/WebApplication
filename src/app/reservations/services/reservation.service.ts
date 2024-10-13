@@ -1,27 +1,25 @@
 import { Injectable } from '@angular/core';
-import {Reservation} from "../models/reservation.model";
-import {BehaviorSubject} from "rxjs";
+import { BaseService } from '../../shared/services/base.service';
+import { Reservation } from '../model/reservation';
+import { User } from '../../auth/model/user';
+import { catchError, retry } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class ReservationService {
-  private reservations: Reservation[] = [];
-  private reservationsSubject = new BehaviorSubject<Reservation[]>(this.reservations);
+export class ReservationService extends BaseService<Reservation> {
+  user: User | null = null;
 
-  reservations$ = this.reservationsSubject.asObservable();
+  constructor() {
+    super();
+    this.basePath = `${this.basePath}/reservations?_expand=search-caregiver&_expand=user`;
 
-  addReservation(reservation: Reservation) {
-    this.reservations.push(reservation);
-    this.reservationsSubject.next(this.reservations);
+    this.user = JSON.parse(localStorage.getItem('user') || '{}');
   }
 
-
-  updateReservation(updatedReservation: Reservation) {
-    const index = this.reservations.findIndex(res => res.caregiverName === updatedReservation.caregiverName);
-    if (index !== -1) {
-      this.reservations[index] = updatedReservation;
-      this.reservationsSubject.next(this.reservations);
-    }
+  getReservations() {
+    return this.http
+      .get<Reservation[]>(`${this.basePath}&userId=${this.user?.id}`)
+      .pipe(retry(2), catchError(this.handleError));
   }
 }
