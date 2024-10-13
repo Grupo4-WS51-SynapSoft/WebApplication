@@ -13,11 +13,12 @@
   height: 100%;
   background: linear-gradient(
     172.88deg,
-    #0d3a5a -11.67%,
-    #25618b 42.27%,
-    #1f577e 106.89%
+    #156683 -11.67%,
+    #25618b 47.61%,
+    #156683 106.89%
   );
-
+  box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15),
+    0px 1px 3px rgba(0, 0, 0, 0.3);
   color: #fff;
   border-radius: 0;
 }

@@ -4,9 +4,11 @@ import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { MatFormField } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { CaregiverCardComponent } from '../../components/caregiver-card/caregiver-card.component';
 import { CaregiverService } from '../../services/caregiver.service';
 import { CaregiverServiceModel } from '../../model/CaregiverService';
+
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -18,6 +20,7 @@ import { FormsModule } from '@angular/forms';
     MatFormField,
     MatButtonModule,
     MatIconModule,
+    MatGridListModule,
     CaregiverCardComponent,
     FormsModule,
   ],

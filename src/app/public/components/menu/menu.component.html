@@ -1,21 +1,16 @@
-<ul class="nav-menu">
-  <li class="nav-menu-item">
+<mat-list role="list">
+  @for (item of menuItems; track $index) {
+  <mat-list-item class="nav-menu-item">
     <a
       class="nav-menu-item__link"
-      routerLink="/search-caregiver"
+      [routerLink]="item.link"
       routerLinkActive="active"
-      >Search caregivers</a
     >
-  </li>
-  <li class="nav-menu-item">
-    <a
-      class="nav-menu-item__link"
-      routerLink="/your-reservations"
-      routerLinkActive="active"
-      >Reservations</a
-    >
-  </li>
-  <li class="nav-menu-item">
-    <a class="nav-menu-item__link" routerLink="/chat-online">Chat online</a>
-  </li>
-</ul>
+      <mat-icon>{{ item.icon }}</mat-icon>
+      <span>
+        {{ item.name }}
+      </span>
+    </a>
+  </mat-list-item>
+  }
+</mat-list>

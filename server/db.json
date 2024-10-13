@@ -4,93 +4,112 @@
       "id": 1,
       "fullName": "Juan Pérez",
       "email": "juan.perez@example.com",
+      "phone": "987654321",
       "document": "00000000",
       "password": "juan123",
-      "phone": "987654321",
+      "profileImg": "https://randomuser.me/api/portraits/med/men/48.jpg",
       "role": "tutor"
     },
     {
       "id": 2,
       "fullName": "María López",
-      "email": "maria.lopez@example.com",
+      "email": "maria.lopez",
+      "phone": "987654322",
       "document": "00000001",
       "password": "maria123",
-      "phone": "987654322",
-      "role": "tutor"
+      "profileImg": "https://randomuser.me/api/portraits/med/women/49.jpg",
+      "role": "caregiver"
+    }
+  ],
+  "services": [
+    {
+      "id": 1,
+      "caregiverId": 2,
+      "description": "Don't worry, I'll take care of your loved one with the utmost dedication and care. I understand the importance of providing a safe and nurturing environment, and I am committed to ensuring that your loved one feels comfortable and well-cared for at all times. My approach is centered on empathy, patience, and a genuine passion for caregiving. I strive to create a positive and supportive atmosphere where your loved one can thrive and feel valued. Whether it's through engaging activities, attentive care, or simply being a comforting presence, I am here to provide the best possible care for your loved one.",
+      "schedule": [
+        {
+          "day": "mon",
+          "workHours": { "startTime": "08:00", "endTime": "16:00" }
+        },
+        {
+          "day": "tue",
+          "workHours": { "startTime": "08:00", "endTime": "16:00" }
+        },
+        {
+          "day": "thu",
+          "workHours": { "startTime": "08:00", "endTime": "16:00" }
+        },
+        {
+          "day": "fri",
+          "workHours": { "startTime": "08:00", "endTime": "12:00" }
+        }
+      ],
+      "workaround": ["San Miguel", "Magdalena", "Surquillo", "San Isidro"],
+      "farePerHour": 3.2
+    }
+  ],
+  "reservations": [
+    {
+      "id": 1,
+      "tutorId": 1,
+      "caregiverId": 2,
+      "status": "pending",
+      "schedule": {
+        "date": "2021-12-03",
+        "startTime": "08:00",
+        "endTime": "12:00"
+      },
+      "totalFare": 30.0,
+      "createdAt": "2024-08-11"
+    }
+  ],
+  "payments": [
+    {
+      "id": 1,
+      "userId": 1,
+      "reservationId": 1,
+      "userPaymentMethodId": 1,
+      "amount": 30.0,
+      "operation": "payment",
+      "createdAt": "2024-08-11"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "reservationId": 1,
+      "userPaymentMethodId": 2,
+      "amount": 30.0,
+      "operation": "retrieve",
+      "createdAt": "2024-08-11"
+    }
+  ],
+  "userPaymentMethods": [
+    {
+      "id": 1,
+      "userId": 1,
+      "cardNumber": "1234567890123456",
+      "expirationDate": "12/24",
+      "cvv": "123",
+      "cardHolder": "Juan Pérez"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "cardNumber": "8888888888888888",
+      "expirationDate": "12/25",
+      "cvv": "999",
+      "cardHolder": "Juan Pérez Francisco"
     },
     {
       "id": 3,
-      "fullName": "Carlos García",
-      "email": "carlos.garcia@example.com",
-      "document": "00000002",
-      "password": "carlos123",
-      "phone": "987654323",
-      "role": "tutor"
-    },
-    {
-      "id": 4,
-      "fullName": "Ana Martínez",
-      "email": "ana.martinez@example.com",
-      "document": "00000003",
-      "password": "ana123",
-      "phone": "987654324",
-      "role": "tutor"
-    },
-    {
-      "id": 5,
-      "fullName": "Luis Fernández",
-      "email": "luis.fernandez@example.com",
-      "document": "00000004",
-      "password": "luis123",
-      "phone": "987654325",
-      "role": "tutor"
-    },
-    {
-      "id": 6,
-      "fullName": "Laura Gómez",
-      "email": "laura.gomez@example.com",
-      "document": "00000005",
-      "password": "laura123",
-      "phone": "987654326",
-      "role": "tutor"
-    },
-    {
-      "id": 7,
-      "fullName": "Jorge Díaz",
-      "email": "jorge.diaz@example.com",
-      "document": "00000006",
-      "password": "jorge123",
-      "phone": "987654327",
-      "role": "tutor"
-    },
-    {
-      "id": 8,
-      "fullName": "Elena Ruiz",
-      "email": "elena.ruiz@example.com",
-      "document": "00000007",
-      "password": "elena123",
-      "phone": "987654328",
-      "role": "tutor"
-    },
-    {
-      "id": 9,
-      "fullName": "Pedro Sánchez",
-      "email": "pedro.sanchez@example.com",
-      "document": "00000008",
-      "password": "pedro123",
-      "phone": "987654329",
-      "role": "tutor"
-    },
-    {
-      "fullName": "rambo rambo",
-      "email": "rambo@mail.com",
-      "document": "99999999",
-      "phone": "999999999",
-      "password": "rambo",
-      "role": "tutor",
-      "id": 10
+      "userId": 2,
+      "cardNumber": "1234567890123456",
+      "expirationDate": "12/24",
+      "cvv": "123",
+      "cardHolder": "María López"
     }
   ],
+
   "search-caregivers": [
     {
       "id": 1,
@@ -219,7 +238,8 @@
       }
     }
   ],
-  "reservations": [
+
+  "reservationsV2": [
     {
       "userId": 1,
       "search-caregiverId": 1,

@@ -1,25 +1,30 @@
-<mat-card>
+<mat-card appearance="outlined">
   <mat-card-header>
-    <img class="caregiver-img" [src]="caregiver.image" alt="A user" />
+    <img
+      mat-card-image
+      class="caregiver-img"
+      [src]="caregiver.image"
+      alt="A user"
+    />
   </mat-card-header>
   <mat-card-content>
-    <div class="caregiver-info">
-      <div>
-        <p class="caregiver-name">{{ caregiver.fullName }}</p>
-        <p class="caregiver-address">{{ caregiver.address }}</p>
-      </div>
-      <div class="caregiver-rating">
-        <mat-icon>star</mat-icon>
-        <p>{{ caregiver.rate }}</p>
-      </div>
-    </div>
+    <mat-card-title class="caregiver-name">
+      {{ caregiver.fullName }}
+    </mat-card-title>
+    <mat-card-subtitle class="caregiver-address">
+      {{ caregiver.address }}
+    </mat-card-subtitle>
     <p class="caregiver-biography">
       {{ caregiver.description }}
     </p>
   </mat-card-content>
   <mat-card-actions>
-    <a class="link-see-more" routerLink="./{{ caregiver.id }}">
-      <button mat-flat-button class="btn-see-more">See more</button>
-    </a>
+    <button
+      mat-flat-button
+      class="btn-see-more"
+      routerLink="./ {{ caregiver.id }}"
+    >
+      See more
+    </button>
   </mat-card-actions>
 </mat-card>
