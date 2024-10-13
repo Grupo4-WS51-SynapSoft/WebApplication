@@ -5,9 +5,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatDialog } from '@angular/material/dialog';
 
 import { ServiceSearch } from '../../model/service-search';
 import { ServiceSearchService } from '../../services/service-search.service';
+import { CreateReservationDialogComponent } from '../../../reservations/components/create-reservation-dialog/create-reservation-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-service-detail',
@@ -31,7 +34,9 @@ export class ServiceDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private serviceSearchService: ServiceSearchService
+    private serviceSearchService: ServiceSearchService,
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog
   ) {
     this.route.params.subscribe((params) => {
       this.serviceSearchId = params['id'];
@@ -46,5 +51,24 @@ export class ServiceDetailComponent implements OnInit {
         console.log(serviceSearch);
         this.serviceSearch = serviceSearch;
       });
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(CreateReservationDialogComponent, {
+      data: this.serviceSearch,
+      width: '640px',
+      maxWidth: '640px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed', result);
+
+      const message =
+        result === 'success'
+          ? 'Reservation created'
+          : 'Reservation not created';
+
+      this.snackBar.open(message, 'Close');
+    });
   }
 }
