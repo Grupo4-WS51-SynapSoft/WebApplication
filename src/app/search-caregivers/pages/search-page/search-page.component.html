@@ -36,7 +36,7 @@
 </div>
 
 <div class="search-caregivers-list">
-  @for (serviceSearch of filteredCaregiversList; track $index) {
+  @for (serviceSearch of filteredSearchServiceList; track $index) {
   <app-caregiver-card [serviceSearch]="serviceSearch"></app-caregiver-card>
   }
 </div>

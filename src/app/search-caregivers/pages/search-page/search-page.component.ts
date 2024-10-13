@@ -6,8 +6,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { CaregiverCardComponent } from '../../components/caregiver-card/caregiver-card.component';
-import { CaregiverService } from '../../services/caregiver.service';
-import { CaregiverServiceModel } from '../../model/CaregiverService';
 
 import { FormsModule } from '@angular/forms';
 import { ServiceSearch } from '../../model/service-search';
@@ -30,16 +28,13 @@ import { ServiceSearchService } from '../../services/service-search.service';
   styleUrl: './search-page.component.css',
 })
 export class SearchPageComponent implements OnInit, OnChanges {
-  caregiversList: ServiceSearch[] = [];
-  filteredCaregiversList: ServiceSearch[] = [];
+  searchServiceList: ServiceSearch[] = [];
+  filteredSearchServiceList: ServiceSearch[] = [];
   orderByRating: 'relevant' | 'popular' = 'relevant';
   locationOptions: string[] = [];
   selectedLocation = '';
 
-  constructor(
-    private caregiverService: CaregiverService,
-    private serviceSearchService: ServiceSearchService
-  ) {}
+  constructor(private serviceSearchService: ServiceSearchService) {}
 
   ngOnInit() {
     this.getCaregiversList();
@@ -54,8 +49,8 @@ export class SearchPageComponent implements OnInit, OnChanges {
   }
 
   onReloadList() {
-    this.caregiversList = [];
-    this.filteredCaregiversList = [];
+    this.searchServiceList = [];
+    this.filteredSearchServiceList = [];
 
     // Se simula una carga de 2 segundos
     window.setTimeout(() => {
@@ -65,7 +60,7 @@ export class SearchPageComponent implements OnInit, OnChanges {
 
   getCaregiversList() {
     this.serviceSearchService.getAll().subscribe((searchResults) => {
-      this.caregiversList = searchResults;
+      this.searchServiceList = searchResults;
 
       this.updateFilteredCaregiversList();
 
@@ -89,14 +84,14 @@ export class SearchPageComponent implements OnInit, OnChanges {
   }
 
   updateFilteredCaregiversList() {
-    this.filteredCaregiversList = this.caregiversList.filter(
+    this.filteredSearchServiceList = this.searchServiceList.filter(
       (c) =>
         !this.selectedLocation || c.caregiver.district === this.selectedLocation
     );
 
-    this.filteredCaregiversList =
+    this.filteredSearchServiceList =
       this.orderByRating === 'popular'
-        ? this.filteredCaregiversList.sort((a, b) => b.rating - a.rating)
-        : this.filteredCaregiversList;
+        ? this.filteredSearchServiceList.sort((a, b) => b.rating - a.rating)
+        : this.filteredSearchServiceList;
   }
 }
