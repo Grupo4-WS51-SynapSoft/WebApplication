@@ -3,7 +3,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
-import { CaregiverServiceModel } from '../../model/CaregiverService';
+import { ServiceSearch } from '../../model/service-search';
 @Component({
   selector: 'app-caregiver-card',
   standalone: true,
@@ -12,5 +12,5 @@ import { CaregiverServiceModel } from '../../model/CaregiverService';
   styleUrl: './caregiver-card.component.css',
 })
 export class CaregiverCardComponent {
-  @Input() caregiver!: CaregiverServiceModel;
+  @Input() serviceSearch!: ServiceSearch;
 }

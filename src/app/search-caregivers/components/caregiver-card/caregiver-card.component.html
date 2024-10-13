@@ -3,26 +3,26 @@
     <img
       mat-card-image
       class="caregiver-img"
-      [src]="caregiver.image"
+      [src]="serviceSearch.caregiver.profileImg"
       alt="A user"
     />
   </mat-card-header>
   <mat-card-content>
     <mat-card-title class="caregiver-name">
-      {{ caregiver.fullName }}
+      {{ serviceSearch.caregiver.fullName }}
     </mat-card-title>
     <mat-card-subtitle class="caregiver-address">
-      {{ caregiver.address }}
+      {{ serviceSearch.caregiver.district }}
     </mat-card-subtitle>
     <p class="caregiver-biography">
-      {{ caregiver.description }}
+      {{ serviceSearch.description }}
     </p>
   </mat-card-content>
   <mat-card-actions>
     <button
       mat-flat-button
       class="btn-see-more"
-      routerLink="./ {{ caregiver.id }}"
+      routerLink="./{{ serviceSearch.id }}"
     >
       See more
     </button>

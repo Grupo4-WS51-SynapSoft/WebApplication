@@ -8,6 +8,7 @@ export interface ServiceSearch {
   workaround: string[];
   farePerHour: number;
   caregiver: User;
+  rating: number;
 }
 
 interface Schedule {

@@ -7,6 +7,7 @@ export interface User {
   password: string;
   profileImg: string;
   address: string;
+  district: string;
   role: UserRole;
 }
 

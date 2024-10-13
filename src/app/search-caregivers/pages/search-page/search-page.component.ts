@@ -10,6 +10,8 @@ import { CaregiverService } from '../../services/caregiver.service';
 import { CaregiverServiceModel } from '../../model/CaregiverService';
 
 import { FormsModule } from '@angular/forms';
+import { ServiceSearch } from '../../model/service-search';
+import { ServiceSearchService } from '../../services/service-search.service';
 
 @Component({
   selector: 'app-search-page',
@@ -28,13 +30,16 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './search-page.component.css',
 })
 export class SearchPageComponent implements OnInit, OnChanges {
-  caregiversList: CaregiverServiceModel[] = [];
-  filteredCaregiversList: CaregiverServiceModel[] = [];
+  caregiversList: ServiceSearch[] = [];
+  filteredCaregiversList: ServiceSearch[] = [];
   orderByRating: 'relevant' | 'popular' = 'relevant';
   locationOptions: string[] = [];
   selectedLocation = '';
 
-  constructor(private caregiverService: CaregiverService) {}
+  constructor(
+    private caregiverService: CaregiverService,
+    private serviceSearchService: ServiceSearchService
+  ) {}
 
   ngOnInit() {
     this.getCaregiversList();
@@ -59,12 +64,14 @@ export class SearchPageComponent implements OnInit, OnChanges {
   }
 
   getCaregiversList() {
-    this.caregiverService.getAll().subscribe((caregivers) => {
-      this.caregiversList = caregivers;
+    this.serviceSearchService.getAll().subscribe((searchResults) => {
+      this.caregiversList = searchResults;
 
       this.updateFilteredCaregiversList();
 
-      this.locationOptions = caregivers.map((caregiver) => caregiver.address);
+      this.locationOptions = searchResults.map(
+        (result) => result.caregiver.district
+      );
       this.locationOptions = Array.from(new Set(this.locationOptions));
     });
   }
@@ -83,12 +90,13 @@ export class SearchPageComponent implements OnInit, OnChanges {
 
   updateFilteredCaregiversList() {
     this.filteredCaregiversList = this.caregiversList.filter(
-      (c) => !this.selectedLocation || c.address === this.selectedLocation
+      (c) =>
+        !this.selectedLocation || c.caregiver.district === this.selectedLocation
     );
 
     this.filteredCaregiversList =
       this.orderByRating === 'popular'
-        ? this.filteredCaregiversList.sort((a, b) => b.rate - a.rate)
+        ? this.filteredCaregiversList.sort((a, b) => b.rating - a.rating)
         : this.filteredCaregiversList;
   }
 }

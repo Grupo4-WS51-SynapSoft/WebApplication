@@ -59,6 +59,11 @@
   font-size: 14px;
   margin-top: 8px;
   color: #40484c;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  line-clamp: 3;
+  overflow: hidden;
 }
 
 .btn-see-more {

@@ -8,7 +8,8 @@
       "document": "00000001",
       "password": "maria123",
       "profileImg": "https://randomuser.me/api/portraits/med/women/49.jpg",
-      "address": "Av. Los Pinos 123, San Miguel"
+      "address": "Av. Los Pinos 123",
+      "district": "San Miguel"
     }
   ],
   "tutors": [
@@ -20,7 +21,8 @@
       "document": "00000000",
       "password": "juan123",
       "profileImg": "https://randomuser.me/api/portraits/med/men/48.jpg",
-      "address": "Av. La Marian 123, San Miguel"
+      "address": "Av. La Marina 123",
+      "district": "San Miguel"
     }
   ],
   "services": [
@@ -47,7 +49,8 @@
         }
       ],
       "workaround": ["San Miguel", "Magdalena", "Surquillo", "San Isidro"],
-      "farePerHour": 3.2
+      "farePerHour": 3.2,
+      "rating": 4.5
     }
   ],
   "reservations": [
