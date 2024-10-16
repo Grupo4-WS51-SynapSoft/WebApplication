@@ -38,6 +38,23 @@
       <div class="form-btn-wrapper">
         <button mat-flat-button class="primary-btn">Enter</button>
       </div>
+
+      <div class="form-btn-wrapper">
+        <button
+          mat-flat-button
+          class="primary-btn"
+          (click)="loginAsTutorDemoBtn()"
+        >
+          Login as Tutor
+        </button>
+        <button
+          mat-flat-button
+          class="primary-btn"
+          (click)="loginAsCaregiverDemoBtn()"
+        >
+          Login as Caregiver
+        </button>
+      </div>
     </form>
   </div>
 </section>

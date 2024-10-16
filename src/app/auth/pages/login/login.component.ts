@@ -87,4 +87,30 @@ export class LoginComponent implements OnInit {
         else this.router.navigate(['/search-caregiver']);
       });
   }
+
+  loginAsTutorDemoBtn() {
+    this.authService
+      .loginAsTutor('juan.perez@example.com', 'juan123')
+      .subscribe((user) => {
+        window.localStorage.setItem(
+          'user',
+          JSON.stringify({ ...user, role: 'tutor' })
+        );
+
+        this.router.navigate(['/search-caregiver']);
+      });
+  }
+
+  loginAsCaregiverDemoBtn() {
+    this.authService
+      .loginAsCaregiver('maria.lopez@example.com', 'maria123')
+      .subscribe((user) => {
+        window.localStorage.setItem(
+          'user',
+          JSON.stringify({ ...user, role: 'caregiver' })
+        );
+
+        this.router.navigate(['/your-service']);
+      });
+  }
 }

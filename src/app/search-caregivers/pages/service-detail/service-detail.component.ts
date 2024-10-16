@@ -111,6 +111,9 @@ export class ServiceDetailComponent implements OnInit {
         .subscribe((serviceSearch) => {
           console.log(serviceSearch);
           this.serviceSearch = serviceSearch;
+
+          this.places = this.serviceSearch.workaround || [];
+          this.farePerHour = this.serviceSearch.farePerHour || 0;
         });
   }
 
@@ -279,11 +282,6 @@ export class ServiceDetailComponent implements OnInit {
 
     if (index && index >= 0) {
       this.placesAndFareForm.value.places?.splice(index, 1);
-
-      // this.placesAndFareForm.setValue({
-      //   places: Array.from(this.places),
-      //   farePerHour: this.placesAndFareForm.value.farePerHour || Number.NaN,
-      // });
     }
   }
 

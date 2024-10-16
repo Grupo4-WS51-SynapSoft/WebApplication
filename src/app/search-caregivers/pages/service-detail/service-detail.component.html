@@ -1,13 +1,16 @@
 <section>
   <header class="section-header">
     <h1 class="header-title">
-      Detail of {{ serviceSearch?.caregiver?.fullName }}’s caregiver service
+      @if (canEdit) { Your offer description } @else { Detail of
+      {{ serviceSearch?.caregiver?.fullName }}’s caregiver service }
     </h1>
 
-    <a class="go-back-btn" routerLink="../">
-      <mat-icon>arrow_back</mat-icon>
-      <span>Go back</span>
-    </a>
+    @if (!canEdit) {
+      <a class="go-back-btn" routerLink="../">
+        <mat-icon>arrow_back</mat-icon>
+        <span>Go back</span>
+      </a>
+    }
   </header>
 
   <div class="caregiver-section">
@@ -221,7 +224,7 @@
             </mat-chip-set>
 
             <p style="font-weight: 600">Fare per hour:</p>
-            <p>S/ {{ (farePerHour ).toFixed(2) }}</p>
+            <p>S/ {{ farePerHour.toFixed(2) }}</p>
             } @else {
             <form
               [formGroup]="placesAndFareForm"
