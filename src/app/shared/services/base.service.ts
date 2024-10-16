@@ -4,7 +4,7 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment.dev';
+import { environment } from '../../../environments/environment';
 import { catchError, Observable, retry, throwError } from 'rxjs';
 
 @Injectable({
