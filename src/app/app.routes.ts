@@ -34,6 +34,7 @@ export const routes: Routes = [
       },
       { path: 'payment/history', component: PaymentHistoryComponent },
       { path: 'search-caregiver/:id', component: ServiceDetailComponent },
+      { path: 'your-service', component: ServiceDetailComponent },
       { path: 'reservations', component: ReservationListComponent },
     ],
   },

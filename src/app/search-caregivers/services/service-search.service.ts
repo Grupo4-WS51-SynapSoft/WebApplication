@@ -24,4 +24,16 @@ export class ServiceSearchService extends BaseService<ServiceSearch> {
       .get<ServiceSearch>(`${this.basePath}/${id}?_expand=caregiver`)
       .pipe(retry(2), catchError(this.handleError));
   }
+
+  getByCaregiverId(id: number) {
+    return this.http
+      .get<ServiceSearch[]>(
+        `${this.basePath}?caregiverId=${id}&_expand=caregiver`
+      )
+      .pipe(
+        retry(2),
+        catchError(this.handleError),
+        map((services) => services[0])
+      );
+  }
 }
