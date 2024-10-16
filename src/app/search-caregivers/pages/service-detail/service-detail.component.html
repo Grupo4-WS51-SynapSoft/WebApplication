@@ -198,18 +198,93 @@
           </mat-card-content>
         </mat-card>
         <mat-card style="flex-grow: 1; width: 100%">
-          <mat-card-header>
+          <mat-card-header style="position: relative">
             <mat-card-title>Places & Fare</mat-card-title>
             <mat-card-subtitle>See more options</mat-card-subtitle>
+            @if (canEdit && !placesAndFareEditMode) {
+            <button
+              mat-fab
+              aria-label="Edit places & fare"
+              (click)="placesAndFareEditMode = true"
+              style="position: absolute; top: 10px; right: 16px"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            }
           </mat-card-header>
           <mat-card-content>
+            @if (!placesAndFareEditMode) {
             <mat-chip-set>
-              @for (places of serviceSearch?.workaround; track $index) {
-              <mat-chip>{{ places }}</mat-chip>
+              @for (place of places; track $index) {
+              <mat-chip>{{ place }}</mat-chip>
               }
             </mat-chip-set>
+
             <p style="font-weight: 600">Fare per hour:</p>
-            <p>S/ {{ (serviceSearch?.farePerHour ?? 0 / 100).toFixed(2) }}</p>
+            <p>S/ {{ (farePerHour ).toFixed(2) }}</p>
+            } @else {
+            <form
+              [formGroup]="placesAndFareForm"
+              (submit)="updatePlacesAndFare($event)"
+            >
+              <div>
+                <mat-form-field appearance="outline" style="width: 100%">
+                  <mat-label>Workarounds</mat-label>
+                  <mat-chip-grid #chipGrid aria-label="Enter a place">
+                    @for (place of placesAndFareForm.value.places; track $index)
+                    {
+                    <mat-chip-row
+                      (removed)="removePlace(place)"
+                      [editable]="true"
+                      (edited)="editPlace(place, $event)"
+                      [aria-description]="'press enter to edit ' + place"
+                    >
+                      {{ place }}
+                      <button matChipRemove>
+                        <mat-icon>cancel</mat-icon>
+                      </button>
+                    </mat-chip-row>
+                    }
+                    <input
+                      placeholder="New place..."
+                      [matChipInputFor]="chipGrid"
+                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                      [matChipInputAddOnBlur]="true"
+                      (matChipInputTokenEnd)="addPlace($event)"
+                      required
+                    />
+                  </mat-chip-grid>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field appearance="outline" style="width: 100%">
+                  <mat-label>Fare per Hour</mat-label>
+                  <input
+                    matInput
+                    formControlName="farePerHour"
+                    placeholder="3.20"
+                    required
+                  />
+                </mat-form-field>
+              </div>
+
+              <button
+                mat-stroked-button
+                class="btn"
+                type="submit"
+                (click)="cancelEditPlacesAndFare($event)"
+              >
+                <mat-icon>close</mat-icon>
+                <span>Cancel</span>
+              </button>
+
+              <button mat-flat-button class="btn btn-primary">
+                <mat-icon>edit</mat-icon>
+                <span>Update</span>
+              </button>
+            </form>
+
+            }
           </mat-card-content>
         </mat-card>
       </div>

@@ -4,16 +4,22 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
-import { MatChipsModule } from '@angular/material/chips';
+import {
+  MatChipEditedEvent,
+  MatChipInputEvent,
+  MatChipsModule,
+} from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
 import {
   FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 
 import { Schedule, ServiceSearch } from '../../model/service-search';
@@ -46,10 +52,20 @@ export class ServiceDetailComponent implements OnInit {
 
   public biographyEditMode = false;
   public biographyForm = new FormGroup({
-    description: new FormControl(''),
+    description: new FormControl('', [Validators.required]),
   });
 
   public scheduleEditMode = false;
+
+  public placesAndFareEditMode = false;
+  public placesAndFareForm = new FormGroup({
+    places: new FormControl<string[]>([]),
+    farePerHour: new FormControl('', [Validators.required]),
+  });
+  public places: string[] = [];
+  public farePerHour = 0;
+
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
   public serviceSearch?: ServiceSearch;
   public displayedScheduleColumns: string[] = ['day', 'startHour', 'endHour'];
@@ -77,8 +93,13 @@ export class ServiceDetailComponent implements OnInit {
         .subscribe((services) => {
           this.serviceSearchId = services.id;
           this.serviceSearch = services;
+          this.places = this.serviceSearch.workaround || [];
+          this.farePerHour = this.serviceSearch.farePerHour || 0;
 
-          console.log(this.serviceSearch);
+          this.placesAndFareForm.setValue({
+            places: Array.from(this.serviceSearch.workaround || []),
+            farePerHour: this.farePerHour.toString(),
+          });
 
           this.biographyForm.setValue({
             description: this.serviceSearch.description,
@@ -214,5 +235,85 @@ export class ServiceDetailComponent implements OnInit {
         if (this.serviceSearch && newSchedules)
           this.serviceSearch.schedules = newSchedules;
       });
+  }
+
+  addPlace($event: MatChipInputEvent) {
+    const tempPlaces = Array.from(this.placesAndFareForm.value.places || []);
+
+    const value = ($event.value || '').trim();
+
+    if (value) {
+      tempPlaces.push(value);
+
+      this.placesAndFareForm.setValue({
+        places: tempPlaces,
+        farePerHour: this.placesAndFareForm.value.farePerHour?.toString() || '',
+      });
+    }
+
+    $event.chipInput!.clear();
+  }
+
+  editPlace(place: string, $event: MatChipEditedEvent) {
+    const tempPlaces = Array.from(this.placesAndFareForm.value.places || []);
+    const value = $event.value.trim();
+
+    if (!value) {
+      this.removePlace(place);
+      return;
+    }
+
+    const index = this.placesAndFareForm.value.places?.indexOf(place);
+    if (index && index >= 0) {
+      tempPlaces[index] = value;
+
+      this.placesAndFareForm.setValue({
+        places: tempPlaces,
+        farePerHour: this.placesAndFareForm.value.farePerHour?.toString() || '',
+      });
+    }
+  }
+
+  removePlace(place: string) {
+    const index = this.placesAndFareForm.value.places?.indexOf(place);
+
+    if (index && index >= 0) {
+      this.placesAndFareForm.value.places?.splice(index, 1);
+
+      // this.placesAndFareForm.setValue({
+      //   places: Array.from(this.places),
+      //   farePerHour: this.placesAndFareForm.value.farePerHour || Number.NaN,
+      // });
+    }
+  }
+
+  updatePlacesAndFare($event: Event) {
+    $event.preventDefault();
+
+    this.serviceSearchService
+      .patch(this.serviceSearchId, {
+        workaround: this.placesAndFareForm.value.places,
+        farePerHour: Number(this.placesAndFareForm.value.farePerHour),
+      })
+      .subscribe(() => {
+        this.snackBar.open('Places and fare updated', 'Close', {
+          duration: 3000,
+        });
+
+        this.placesAndFareEditMode = false;
+        this.places = Array.from(this.placesAndFareForm.value.places ?? []);
+        this.farePerHour = Number(this.placesAndFareForm.value.farePerHour);
+      });
+  }
+
+  cancelEditPlacesAndFare($event: Event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+    this.placesAndFareEditMode = false;
+    this.placesAndFareForm.setValue({
+      places: Array.from(this.places),
+      farePerHour: Number(this.placesAndFareForm.value.farePerHour).toFixed(2),
+    });
+    // this.tempPlaces = Array.from(this.places);
   }
 }
