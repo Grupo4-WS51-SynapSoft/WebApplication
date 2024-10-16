@@ -16,10 +16,11 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
-import { ServiceSearch } from '../../model/service-search';
+import { Schedule, ServiceSearch } from '../../model/service-search';
 import { ServiceSearchService } from '../../services/service-search.service';
 import { CreateReservationDialogComponent } from '../../../reservations/components/create-reservation-dialog/create-reservation-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CreateEditScheduleComponent } from '../../components/create-edit-schedule/create-edit-schedule.component';
 
 @Component({
   selector: 'app-service-detail',
@@ -47,6 +48,8 @@ export class ServiceDetailComponent implements OnInit {
   public biographyForm = new FormGroup({
     description: new FormControl(''),
   });
+
+  public scheduleEditMode = false;
 
   public serviceSearch?: ServiceSearch;
   public displayedScheduleColumns: string[] = ['day', 'startHour', 'endHour'];
@@ -111,6 +114,14 @@ export class ServiceDetailComponent implements OnInit {
     });
   }
 
+  editSchedule() {
+    this.scheduleEditMode = true;
+    this.displayedScheduleColumns = [
+      ...this.displayedScheduleColumns,
+      'actions',
+    ];
+  }
+
   cancelEditBiographyMode($event: MouseEvent) {
     $event.preventDefault();
     $event.stopPropagation();
@@ -132,6 +143,76 @@ export class ServiceDetailComponent implements OnInit {
         if (this.serviceSearch?.description)
           this.serviceSearch.description =
             this.biographyForm.value.description || '';
+      });
+  }
+
+  cancelEditSchedule() {
+    this.scheduleEditMode = false;
+    this.displayedScheduleColumns = this.displayedScheduleColumns.filter(
+      (col) => col !== 'actions'
+    );
+  }
+
+  openAddOrEditScheduleDialog(schedule?: Schedule) {
+    const dialogRef = this.dialog.open(CreateEditScheduleComponent, {
+      data: schedule,
+    });
+
+    dialogRef
+      .afterClosed()
+      .subscribe((result: { schedule: Schedule; editMode: boolean }) => {
+        const tempSchedules = Array.from(this.serviceSearch?.schedules || []);
+
+        if (result.editMode) {
+          const scheduleIndex = this.serviceSearch?.schedules.findIndex(
+            (s) => s === schedule
+          );
+
+          if (scheduleIndex !== undefined && scheduleIndex !== -1) {
+            tempSchedules[scheduleIndex] = result.schedule;
+          }
+
+          this.serviceSearchService
+            .patch(this.serviceSearchId, {
+              schedules: tempSchedules,
+            })
+            .subscribe(() => {
+              this.serviceSearch!.schedules = tempSchedules;
+              this.snackBar.open('Schedule updated', 'Close', {
+                duration: 3000,
+              });
+            });
+        } else {
+          tempSchedules.push(result.schedule);
+
+          this.serviceSearchService
+            .patch(this.serviceSearchId, {
+              schedules: tempSchedules,
+            })
+            .subscribe(() => {
+              this.serviceSearch!.schedules = tempSchedules;
+              this.snackBar.open('Schedule added', 'Close', {
+                duration: 3000,
+              });
+            });
+        }
+      });
+  }
+
+  deleteSchedule(schedule: Schedule) {
+    const newSchedules = this.serviceSearch?.schedules.filter(
+      (s) => s !== schedule
+    );
+
+    this.serviceSearchService
+      .patch(this.serviceSearchId, { schedules: newSchedules })
+      .subscribe(() => {
+        this.snackBar.open('Schedule deleted', 'Close', {
+          duration: 3000,
+        });
+
+        if (this.serviceSearch && newSchedules)
+          this.serviceSearch.schedules = newSchedules;
       });
   }
 }

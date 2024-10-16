@@ -39,7 +39,7 @@
           }
         },
         {
-          "day": "thu",
+          "day": "wed",
           "workHours": {
             "startTime": "08:00",
             "endTime": "16:00"
