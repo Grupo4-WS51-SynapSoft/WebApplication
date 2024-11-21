@@ -65,7 +65,7 @@ export class SearchPageComponent implements OnInit, OnChanges {
       this.updateFilteredCaregiversList();
 
       this.locationOptions = searchResults.map(
-        (result) => result.caregiver.district
+        (result) => result.districtsScope
       );
       this.locationOptions = Array.from(new Set(this.locationOptions));
     });
@@ -86,12 +86,12 @@ export class SearchPageComponent implements OnInit, OnChanges {
   updateFilteredCaregiversList() {
     this.filteredSearchServiceList = this.searchServiceList.filter(
       (c) =>
-        !this.selectedLocation || c.caregiver.district === this.selectedLocation
+        !this.selectedLocation || c.districtsScope === this.selectedLocation
     );
 
     this.filteredSearchServiceList =
       this.orderByRating === 'popular'
-        ? this.filteredSearchServiceList.sort((a, b) => b.rating - a.rating)
+        ? this.filteredSearchServiceList.sort((a, b) => b.caregiverExperience - a.caregiverExperience)
         : this.filteredSearchServiceList;
   }
 }

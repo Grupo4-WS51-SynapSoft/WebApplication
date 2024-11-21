@@ -2,19 +2,22 @@ import { User } from '../../shared/models/user';
 
 export interface ServiceSearch {
   id: number;
-  caregiverId: number;
   description: string;
-  schedules: Schedule[];
-  workaround: string[];
+  completeName: string;
   farePerHour: number;
-  caregiver: User;
-  rating: number;
+  age: number;
+  address: string;
+  caregiverExperience: number;
+  completedServices: number;
+  biography: string;
+  profileImage: string;
+  districtsScope: string;
+  schedules: Schedule[];
 }
 
 export interface Schedule {
-  day: string;
-  workHours: {
-    startTime: string;
-    endTime: string;
-  };
+  id: number;
+  weekDay: string;
+  startHour: string;
+  endHour: string;
 }

@@ -62,9 +62,9 @@ export class CreateEditScheduleComponent {
 
     this.editMode = true;
     this.scheduleForm.setValue({
-      day: data.day,
-      startTime: data.workHours.startTime,
-      endTime: data.workHours.endTime,
+      day: data.weekDay,
+      startTime: data.startHour,
+      endTime: data.endHour,
     });
   }
 
@@ -72,11 +72,10 @@ export class CreateEditScheduleComponent {
     $event.preventDefault();
 
     const schedule: Schedule = {
-      day: this.scheduleForm.value.day || '',
-      workHours: {
-        startTime: this.scheduleForm.value.startTime || '',
-        endTime: this.scheduleForm.value.endTime || '',
-      },
+      id: this.data?.id || 0,
+      weekDay: this.scheduleForm.value.day || '',
+      startHour: this.scheduleForm.value.startTime || '',
+      endHour: this.scheduleForm.value.endTime || '',
     };
     this.dialogRef.close({ schedule, editMode: this.editMode });
   }

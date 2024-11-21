@@ -2,7 +2,7 @@
   <header class="section-header">
     <h1 class="header-title">
       @if (canEdit) { Your offer description } @else { Detail of
-      {{ serviceSearch?.caregiver?.fullName }}’s caregiver service }
+      {{ serviceSearch?.completeName}}’s caregiver service }
     </h1>
 
     @if (!canEdit) {
@@ -18,37 +18,37 @@
       <mat-card-header>
         <img
           class="caregiver-img"
-          [src]="serviceSearch?.caregiver?.profileImg"
-          [alt]="serviceSearch?.caregiver?.fullName"
+          [src]="serviceSearch?.profileImage"
+          [alt]="serviceSearch?.completeName"
         />
       </mat-card-header>
       <mat-card-content>
         <p class="caregiver-card-name">
-          {{ serviceSearch?.caregiver?.fullName }}
+          {{ serviceSearch?.completeName }}
         </p>
 
         <div class="caregiver-card-list">
           <div class="caregiver-card-item">
             <mat-icon>person</mat-icon>
-            <span>24 years old</span>
+            <span>{{ serviceSearch?.age }} years old</span>
           </div>
 
           <div class="caregiver-card-item">
             <mat-icon>place</mat-icon>
             <span
-              >{{ serviceSearch?.caregiver?.address }},
-              {{ serviceSearch?.caregiver?.district }}</span
+              >{{ serviceSearch?.address }},
+              {{ serviceSearch?.districtsScope }}</span
             >
           </div>
 
           <div class="caregiver-card-item">
             <mat-icon>schedule</mat-icon>
-            <span>2 years in SafeChild</span>
+            <span>{{ serviceSearch?.caregiverExperience }} years in SafeChild</span>
           </div>
 
           <div class="caregiver-card-item">
             <mat-icon>work</mat-icon>
-            <span>42 services realized</span>
+            <span>{{ serviceSearch?.completedServices }} services realized</span>
           </div>
         </div>
       </mat-card-content>
@@ -68,7 +68,7 @@
           <mat-card-title>Biography</mat-card-title>
           <mat-card-subtitle
             >See more about
-            {{ serviceSearch?.caregiver?.fullName }}</mat-card-subtitle
+            {{ serviceSearch?.completeName }}</mat-card-subtitle
           >
           @if (canEdit && !biographyEditMode) {
           <button

@@ -27,6 +27,7 @@ import { ServiceSearchService } from '../../services/service-search.service';
 import { CreateReservationDialogComponent } from '../../../reservations/components/create-reservation-dialog/create-reservation-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CreateEditScheduleComponent } from '../../components/create-edit-schedule/create-edit-schedule.component';
+import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-service-detail',
@@ -68,7 +69,7 @@ export class ServiceDetailComponent implements OnInit {
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
   public serviceSearch?: ServiceSearch;
-  public displayedScheduleColumns: string[] = ['day', 'startHour', 'endHour'];
+  public displayedScheduleColumns: string[] = ['weekDay', 'startHour', 'endHour'];
 
   constructor(
     private route: ActivatedRoute,
@@ -91,29 +92,53 @@ export class ServiceDetailComponent implements OnInit {
       this.serviceSearchService
         .getByCaregiverId(user.id)
         .subscribe((services) => {
+          console.log(services);
           this.serviceSearchId = services.id;
           this.serviceSearch = services;
-          this.places = this.serviceSearch.workaround || [];
+          this.places = this.serviceSearch.districtsScope
+            ? this.serviceSearch.districtsScope
+              .split(',')
+              .map((district) => district.trim())
+            : [];
           this.farePerHour = this.serviceSearch.farePerHour || 0;
 
           this.placesAndFareForm.setValue({
-            places: Array.from(this.serviceSearch.workaround || []),
+            places: Array.from(this.places || []),
             farePerHour: this.farePerHour.toString(),
           });
 
           this.biographyForm.setValue({
-            description: this.serviceSearch.description,
+            description: this.serviceSearch.biography,
           });
+
+          this.serviceSearchService
+            .getCaregiverScheduleById(this.serviceSearchId)
+            .subscribe((schedule) => {
+              if (this.serviceSearch) {
+                this.serviceSearch.schedules = schedule;
+              }
+            });
         });
     } else
       this.serviceSearchService
         .getById(this.serviceSearchId)
         .subscribe((serviceSearch) => {
-          console.log(serviceSearch);
           this.serviceSearch = serviceSearch;
 
-          this.places = this.serviceSearch.workaround || [];
+          this.places = this.serviceSearch.districtsScope
+            ? this.serviceSearch.districtsScope
+              .split(',')
+              .map((district) => district.trim())
+            : [];
+
           this.farePerHour = this.serviceSearch.farePerHour || 0;
+          this.serviceSearchService
+            .getCaregiverScheduleById(this.serviceSearch.id)
+            .subscribe((schedule) => {
+              if (this.serviceSearch) {
+                this.serviceSearch.schedules = schedule;
+              }
+            });
         });
   }
 
@@ -155,8 +180,9 @@ export class ServiceDetailComponent implements OnInit {
   updateDescription() {
     console.log('Updated');
     this.serviceSearchService
-      .patch(this.serviceSearchId, {
-        description: this.biographyForm.value.description,
+      .patchBiography({
+        caregiverId: this.serviceSearchId,
+        biography: this.biographyForm.value.description,
       })
       .subscribe(() => {
         this.snackBar.open('Biography description updated', 'Close', {
@@ -196,10 +222,10 @@ export class ServiceDetailComponent implements OnInit {
             tempSchedules[scheduleIndex] = result.schedule;
           }
 
+          console.log(result.schedule);
+
           this.serviceSearchService
-            .patch(this.serviceSearchId, {
-              schedules: tempSchedules,
-            })
+            .updateCaregiverSchedule(schedule?.id, result.schedule)
             .subscribe(() => {
               this.serviceSearch!.schedules = tempSchedules;
               this.snackBar.open('Schedule updated', 'Close', {
@@ -209,10 +235,9 @@ export class ServiceDetailComponent implements OnInit {
         } else {
           tempSchedules.push(result.schedule);
 
-          this.serviceSearchService
-            .patch(this.serviceSearchId, {
-              schedules: tempSchedules,
-            })
+          console.log(result.schedule);
+
+          this.serviceSearchService.addCaregiverSchedule(this.serviceSearchId, result.schedule)
             .subscribe(() => {
               this.serviceSearch!.schedules = tempSchedules;
               this.snackBar.open('Schedule added', 'Close', {
@@ -229,7 +254,7 @@ export class ServiceDetailComponent implements OnInit {
     );
 
     this.serviceSearchService
-      .patch(this.serviceSearchId, { schedules: newSchedules })
+      .deleteCaregiverSchedule(schedule?.id)
       .subscribe(() => {
         this.snackBar.open('Schedule deleted', 'Close', {
           duration: 3000,
@@ -288,10 +313,14 @@ export class ServiceDetailComponent implements OnInit {
   updatePlacesAndFare($event: Event) {
     $event.preventDefault();
 
+    console.log(this.placesAndFareForm.value.places?.join(','));
+    console.log(Number(this.placesAndFareForm.value.farePerHour))
+
     this.serviceSearchService
-      .patch(this.serviceSearchId, {
-        workaround: this.placesAndFareForm.value.places,
+      .patchPlaceFare({
+        caregiverId: this.serviceSearchId,
         farePerHour: Number(this.placesAndFareForm.value.farePerHour),
+        districtsScope: this.placesAndFareForm.value.places?.join(","),
       })
       .subscribe(() => {
         this.snackBar.open('Places and fare updated', 'Close', {

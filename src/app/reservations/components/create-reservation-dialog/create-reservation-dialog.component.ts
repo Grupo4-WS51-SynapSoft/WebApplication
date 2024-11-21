@@ -94,7 +94,7 @@ export class CreateReservationDialogComponent implements OnInit {
     const day = (d || new Date()).getDay();
 
     const workingDays = this.data.schedules.map(
-      (schedule: ISchedule) => dayLabels[schedule.day as keyof typeof dayLabels]
+      (schedule: ISchedule) => dayLabels[schedule.weekDay as keyof typeof dayLabels]
     );
 
     return workingDays.includes(day);
@@ -107,7 +107,7 @@ export class CreateReservationDialogComponent implements OnInit {
 
     const reservation: Reservation = {
       tutorId: this.user.id,
-      caregiverId: this.data.caregiver.id,
+      caregiverId: this.data.id,
       serviceId: this.data.id,
       status: 'pending',
       createdAt: new Date().toISOString(),
@@ -121,7 +121,7 @@ export class CreateReservationDialogComponent implements OnInit {
 
     const payment: Payment = {
       tutorId: this.user.id,
-      caregiverId: this.data.caregiver.id,
+      caregiverId: this.data.id,
       serviceId: this.data.id,
       totalAmount: reservation.totalFare,
       date: new Date().toISOString(),
