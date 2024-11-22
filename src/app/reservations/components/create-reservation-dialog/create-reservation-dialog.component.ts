@@ -84,7 +84,7 @@ export class CreateReservationDialogComponent implements OnInit {
 
   ngOnInit() {
     this.paymentMethodsService
-      .getByUserId(this.user?.id, this.user?.role)
+      .getByUserId(this.user?.id)
       .subscribe((cardList) => {
         this.cardList = cardList;
       });
@@ -105,37 +105,30 @@ export class CreateReservationDialogComponent implements OnInit {
       +this.firstFormGroup.value.endTime.split(':')[0] -
       this.firstFormGroup.value.startTime.split(':')[0];
 
+
     const reservation: Reservation = {
-      tutorId: this.user.id,
       caregiverId: this.data.id,
-      serviceId: this.data.id,
-      status: 'pending',
-      createdAt: new Date().toISOString(),
-      schedule: {
-        date: this.firstFormGroup.value.date,
-        startTime: this.firstFormGroup.value.startTime,
-        endTime: this.firstFormGroup.value.endTime,
-      },
-      totalFare: totalHours * this.data.farePerHour,
+      tutorId: this.user.id,
+      date: this.firstFormGroup.value.date,
+      startTime: this.firstFormGroup.value.startTime,
+      endTime: this.firstFormGroup.value.endTime,
+      paymentMethodId: this.secondFormGroup.value.paymentOption[0].id,
+      status: 'PENDING',
+      totalAmount: totalHours * this.data.farePerHour,
     };
 
-    const payment: Payment = {
-      tutorId: this.user.id,
-      caregiverId: this.data.id,
-      serviceId: this.data.id,
-      totalAmount: reservation.totalFare,
-      date: new Date().toISOString(),
-      tutorPaymentMethodId: this.secondFormGroup.value.paymentOption[0].id,
-      tutorPaymentMethod: this.secondFormGroup.value.paymentOption[0],
-    };
+    this.reservationService.create(reservation).subscribe((rsp) => {
+      const payment = {
+        userId: this.user.id,
+        amount: reservation.totalAmount,
+        reservationId: rsp.id,
+        cardId: this.secondFormGroup.value.paymentOption[0].id,
+      };
 
-    console.log(payment);
+      this.paymentService.create(payment).subscribe(() => {
+        console.log('Payment created');
+      });
 
-    this.paymentService.create(payment).subscribe(() => {
-      console.log('Payment created');
-    });
-
-    this.reservationService.create(reservation).subscribe(() => {
       this.dialogRef.close('success');
     });
   }

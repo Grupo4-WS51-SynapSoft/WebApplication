@@ -1,8 +1,8 @@
 <mat-card class="payment-card" appearance="outlined">
   <mat-card-content class="payment-card-content">
-    <p>Num: {{ card.cardNumber }}</p>
-    <p>Exp. Date: {{ card.expirationDate }}</p>
-    <p style="text-transform: uppercase">{{ card.cardHolder }}</p>
+    <p>Num: {{ card.number }}</p>
+    <p>Exp. Date: {{ card.month }}/{{ card.year?.toString()?.slice(2) }}</p>
+    <p style="text-transform: uppercase">{{ card.holder }}</p>
   </mat-card-content>
   <mat-card-actions align="end">
     <button mat-button color="warn" (click)="handleDelete()">Delete</button>

@@ -29,10 +29,12 @@ export class PaymentFormComponent {
 
   onSubmit() {
     if (
-      this.newCard.cardHolder &&
-      this.newCard.cardNumber &&
-      this.newCard.expirationDate &&
-      this.newCard.cvv
+      this.newCard.userId &&
+      this.newCard.holder &&
+      this.newCard.number &&
+      this.newCard.month &&
+      this.newCard.year &&
+      this.newCard.code
     ) {
       this.addCard.emit(this.newCard);
       this.newCard = new Card();

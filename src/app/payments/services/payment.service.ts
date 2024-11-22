@@ -12,18 +12,10 @@ export class PaymentService extends BaseService<Payment> {
     this.basePath = `${this.basePath}/payments`;
   }
 
-  getByTutorId(id: number) {
+  getByUserId(id: number) {
     return this.http
       .get<Payment[]>(
-        `${this.basePath}?tutorId=${id}&_expand=service&_expand=tutor&_expand=caregiver`
-      )
-      .pipe(retry(2), catchError(this.handleError));
-  }
-
-  getByCaregiverId(id: number) {
-    return this.http
-      .get<Payment[]>(
-        `${this.basePath}?caregiverId=${id}&_expand=service&_expand=tutor&_expand=caregiver`
+        `${this.basePath}/${id}`
       )
       .pipe(retry(2), catchError(this.handleError));
   }

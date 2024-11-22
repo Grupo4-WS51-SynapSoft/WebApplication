@@ -11,7 +11,7 @@
       <mat-form-field appearance="outline">
         <mat-select formControlName="day" required>
           @for (option of daySelectOptions; track $index) {
-          <mat-option [value]="option.value">{{ option.label }}</mat-option>
+            <mat-option [value]="option.value">{{ option.label }}</mat-option>
           }
         </mat-select>
       </mat-form-field>

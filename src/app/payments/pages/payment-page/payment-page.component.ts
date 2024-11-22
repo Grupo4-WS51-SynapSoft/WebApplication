@@ -20,7 +20,6 @@ import { PaymentCardComponent } from '../../components/payment-card/payment-card
     CommonModule,
     MatCardModule,
     MatButtonModule,
-    PaymentFormComponent,
     MatIcon,
     PaymentCardComponent,
     RouterLink,
@@ -42,7 +41,7 @@ export class PaymentPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.paymentMethodsService
-      .getByUserId(this.user.id, this.user.role)
+      .getByUserId(this.user.id)
       .subscribe((cards) => {
         this.cards = cards;
       });

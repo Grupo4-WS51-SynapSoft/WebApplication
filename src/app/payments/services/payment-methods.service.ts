@@ -9,13 +9,22 @@ import { catchError, retry } from 'rxjs';
 export class PaymentMethodsService extends BaseService<Card> {
   constructor() {
     super();
-    this.basePath = `${this.basePath}/user-payment-methods`;
+    this.basePath = `${this.basePath}/cards`;
   }
 
-  getByUserId(id: string, role: string) {
+  getByUserId(id: string) {
     return this.http
       .get<Card[]>(
-        `${this.basePath}?${role === 'tutor' ? 'tutorId' : 'caregiverId'}=${id}`
+        `${this.basePath}/${id}`
+      )
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
+  updateCard(id?: number, item?: any) {
+    return this.http
+      .put<Card[]>(
+        `${this.basePath}/${id}`,
+        item
       )
       .pipe(retry(2), catchError(this.handleError));
   }

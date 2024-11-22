@@ -13,7 +13,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from '../../model/user';
+import {User} from "../../model/User";
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -28,7 +28,6 @@ import { AuthService } from '../../services/auth.service';
     RouterLink,
     FormsModule,
     ReactiveFormsModule,
-    NgIf,
   ],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css',

@@ -1,18 +1,19 @@
 export class Card {
   id?: number;
-  cardHolder: string;
-  cardNumber: string;
-  expirationDate: string;
-  cvv: string;
-  tutorId?: number;
-  caregiverId?: number;
+  userId?: number;
+  number?: string;
+  holder: string;
+  year?: number;
+  month?: number;
+  code?: string;
 
   constructor() {
-    this.tutorId = 0;
-    this.caregiverId = 0;
-    this.cardHolder = '';
-    this.cardNumber = '';
-    this.expirationDate = '';
-    this.cvv = '';
+    this.id = 0;
+    this.userId = 0;
+    this.number = '';
+    this.holder = '';
+    this.year = 0;
+    this.month = 0;
+    this.code = '';
   }
 }

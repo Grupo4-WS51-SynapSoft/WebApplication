@@ -6,7 +6,6 @@
     <mat-select
       hidden
       [(ngModel)]="selectedLocation"
-      (selectionChange)="changeSelectedLocation($event)"
     >
       <mat-option value="">All</mat-option>
       <mat-option *ngFor="let location of locationOptions" [value]="location">
@@ -15,14 +14,14 @@
     </mat-select>
   </mat-form-field>
   <mat-form-field class="header-select" appearance="outline">
-    <mat-label>Rating</mat-label>
+    <mat-label>Sort</mat-label>
     <mat-select
       hidden
       [(ngModel)]="orderByRating"
-      (selectionChange)="changeOrderByRating($event)"
     >
-      <mat-option value="relevant">Most relevant</mat-option>
-      <mat-option value="popular">Most popular</mat-option>
+      <mat-option value="">Name</mat-option>
+      <mat-option value="caregiverExperience">More experience</mat-option>
+      <mat-option value="completedServices">Most popular</mat-option>
     </mat-select>
   </mat-form-field>
   <button
@@ -30,13 +29,13 @@
     class="primary-btn refresh-btn"
     (click)="onReloadList()"
   >
-    <mat-icon>refresh</mat-icon>
-    Refresh
+    <mat-icon>search</mat-icon>
+    Search
   </button>
 </div>
 
 <div class="search-caregivers-list">
-  @for (serviceSearch of filteredSearchServiceList; track $index) {
-  <app-caregiver-card [serviceSearch]="serviceSearch"></app-caregiver-card>
+  @for (serviceSearch of searchServiceList; track $index) {
+    <app-caregiver-card [serviceSearch]="serviceSearch"></app-caregiver-card>
   }
 </div>

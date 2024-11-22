@@ -17,10 +17,10 @@ export class ReservationListComponent implements OnInit {
   reservationList: Reservation[] = [];
   displayedColumns = [
     'id',
-    'subject',
-    'createdAt',
+    'caregiver',
+    'date',
     'schedule',
-    'totalFare',
+    'totalAmount',
     'status',
     'actions',
   ];
@@ -38,11 +38,11 @@ export class ReservationListComponent implements OnInit {
 
   handleCancel(reservation: Reservation) {
     this.reservationService
-      .patch(reservation.id, { status: 'cancelled' })
+      .patchReservationStatus(reservation.id,  "CANCELLED")
       .subscribe(() => {
         this.reservationList = this.reservationList.map((r) => {
           if (r.id === reservation.id) {
-            return { ...r, status: 'cancelled' };
+            return { ...r, status: 'CANCELLED' };
           }
           return r;
         });
@@ -51,11 +51,11 @@ export class ReservationListComponent implements OnInit {
 
   handleAccept(reservation: Reservation) {
     this.reservationService
-      .patch(reservation.id, { status: 'accepted' })
+      .patchReservationStatus(reservation.id, 'ACCEPTED')
       .subscribe(() => {
         this.reservationList = this.reservationList.map((r) => {
           if (r.id === reservation.id) {
-            return { ...r, status: 'accepted' };
+            return { ...r, status: 'ACCEPTED' };
           }
           return r;
         });
@@ -64,11 +64,11 @@ export class ReservationListComponent implements OnInit {
 
   handleStartService(reservation: Reservation) {
     this.reservationService
-      .patch(reservation.id, { status: 'in progress' })
+      .patchReservationStatus(reservation.id, 'IN_PROGRESS' )
       .subscribe(() => {
         this.reservationList = this.reservationList.map((r) => {
           if (r.id === reservation.id) {
-            return { ...r, status: 'in progress' };
+            return { ...r, status: 'IN_PROGRESS ' };
           }
           return r;
         });
@@ -77,11 +77,11 @@ export class ReservationListComponent implements OnInit {
 
   handleFinishService(reservation: Reservation) {
     this.reservationService
-      .patch(reservation.id, { status: 'completed' })
+      .patchReservationStatus(reservation.id, 'COMPLETED')
       .subscribe(() => {
         this.reservationList = this.reservationList.map((r) => {
           if (r.id === reservation.id) {
-            return { ...r, status: 'completed' };
+            return { ...r, status: 'COMPLETED' };
           }
           return r;
         });

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from '../../shared/services/base.service';
 import { Reservation } from '../model/reservation';
-import { User } from '../../auth/model/user';
-import { catchError, retry } from 'rxjs';
+import { User } from '../../auth/model/User';
+import { catchError, Observable, retry } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -22,9 +22,18 @@ export class ReservationService extends BaseService<Reservation> {
   getReservations() {
     return this.http
       .get<Reservation[]>(
-        `${this.basePath}?_expand=tutor&_expand=caregiver&${
-          this.role === 'tutor' ? 'tutorId' : 'caregiverId'
-        }=${this.user?.id}`
+        `${this.basePath}/${
+          this.role === 'tutor' ? 'tutor' : 'caregiver'
+        }/${this.user?.id}`
+      )
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
+  patchReservationStatus(reservationId?: number, status?: string): Observable<Reservation> {
+    return this.http
+      .patch<Reservation>(
+        `${this.basePath}/${reservationId}/status/${status}`,
+        this.httpOptions
       )
       .pipe(retry(2), catchError(this.handleError));
   }

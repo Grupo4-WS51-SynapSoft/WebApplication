@@ -52,10 +52,10 @@ export class CreateEditPaymentDialogComponent {
 
     if (this.editMode) {
       this.cardForm.patchValue({
-        cardHolder: data?.cardHolder,
-        cardNumber: data?.cardNumber,
-        cvv: data?.cvv,
-        expirationDate: data?.expirationDate,
+        cardHolder: data?.holder,
+        cardNumber: data?.number,
+        cvv: data?.code,
+        expirationDate: data?.month + "/" + data?.year,
       });
     }
   }
@@ -65,15 +65,18 @@ export class CreateEditPaymentDialogComponent {
   }
 
   onAddCard() {
-    const card: Card = {
-      cardHolder: this.cardForm.value.cardHolder ?? '',
-      cardNumber: this.cardForm.value.cardNumber ?? '',
-      cvv: this.cardForm.value.cvv ?? '',
-      expirationDate: '12/23',
-    };
 
-    if (this.user.role === 'tutor') card.tutorId = this.user.id;
-    else if (this.user.role === 'caregiver') card.caregiverId = this.user.id;
+    var month = this.cardForm.value.expirationDate?.split("/")[0] ?? ''
+    var year = this.cardForm.value.expirationDate?.split("/")[1] ?? ''
+
+    const card: Card = {
+      userId: this.user.id,
+      holder: this.cardForm.value.cardHolder ?? '',
+      number: this.cardForm.value.cardNumber ?? '',
+      code: this.cardForm.value.cvv ?? '',
+      month: parseInt(month),
+      year: parseInt(year),
+    };
 
     this.paymentMethodsService.create(card).subscribe((card) => {
       this.dialogRef.close(card);
@@ -81,8 +84,21 @@ export class CreateEditPaymentDialogComponent {
   }
 
   onEditCard() {
+
+    var month = this.cardForm.value.expirationDate?.split("/")[0] ?? ''
+    var year = this.cardForm.value.expirationDate?.split("/")[1] ?? ''
+
+    const card: Card = {
+      userId: this.user.id,
+      holder: this.cardForm.value.cardHolder ?? '',
+      number: this.cardForm.value.cardNumber ?? '',
+      code: this.cardForm.value.cvv ?? '',
+      month: parseInt(month),
+      year: parseInt(year),
+    };
+
     this.paymentMethodsService
-      .patch(this.data?.id, this.cardForm.value)
+      .updateCard(this.data?.id, card)
       .subscribe((card) => this.dialogRef.close(card));
   }
 

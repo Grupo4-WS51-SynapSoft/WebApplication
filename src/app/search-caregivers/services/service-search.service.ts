@@ -41,6 +41,14 @@ export class ServiceSearchService extends BaseService<ServiceSearch> {
     );
   }
 
+  search(disctrict: string, sort: string) {
+    return this.http.get<ServiceSearch[]>(`${this.basePath}/search?district=${disctrict}&sort=${sort}`).pipe(
+      retry(2),
+      catchError(this.handleError),
+      map((services) => services)
+    );
+  }
+
   patchBiography(item: any): Observable<any> {
     return this.http
       .patch<any>(

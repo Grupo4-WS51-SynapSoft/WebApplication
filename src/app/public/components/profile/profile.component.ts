@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { User } from '../../../auth/model/user';
+import { User } from '../../../auth/model/User';
 
 @Component({
   selector: 'app-profile',

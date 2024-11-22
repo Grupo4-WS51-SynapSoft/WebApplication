@@ -30,11 +30,11 @@ import { ServiceSearchService } from '../../services/service-search.service';
 export class SearchPageComponent implements OnInit, OnChanges {
   searchServiceList: ServiceSearch[] = [];
   filteredSearchServiceList: ServiceSearch[] = [];
-  orderByRating: 'relevant' | 'popular' = 'relevant';
+  orderByRating: 'caregiverExperience' | 'completedServices' | ''= '';
   locationOptions: string[] = [];
   selectedLocation = '';
 
-  constructor(private serviceSearchService: ServiceSearchService) {}
+  constructor(private serviceSearchService: ServiceSearchService) { }
 
   ngOnInit() {
     this.getCaregiversList();
@@ -49,49 +49,31 @@ export class SearchPageComponent implements OnInit, OnChanges {
   }
 
   onReloadList() {
-    this.searchServiceList = [];
-    this.filteredSearchServiceList = [];
-
-    // Se simula una carga de 2 segundos
-    window.setTimeout(() => {
-      this.getCaregiversList();
-    }, 2000);
+    this.searchCaregivers(this.selectedLocation, this.orderByRating );
   }
 
   getCaregiversList() {
-    this.serviceSearchService.getAll().subscribe((searchResults) => {
+    this.serviceSearchService.search("","").subscribe((searchResults) => {
       this.searchServiceList = searchResults;
 
-      this.updateFilteredCaregiversList();
+      this.locationOptions = [
+        ...new Set(
+          searchResults
+            .map(result => result.districtsScope)
+            .join(',')
+            .split(',')
+            .map(district => district.trim())
+        )
+      ];
 
-      this.locationOptions = searchResults.map(
-        (result) => result.districtsScope
-      );
-      this.locationOptions = Array.from(new Set(this.locationOptions));
     });
   }
 
-  changeSelectedLocation(event: MatSelectChange) {
-    this.selectedLocation = event.value;
 
-    this.updateFilteredCaregiversList();
+  searchCaregivers(district: string, sort: string) {
+    this.serviceSearchService.search(district, sort).subscribe((searchResults) => {
+      this.searchServiceList = searchResults;
+    });
   }
 
-  changeOrderByRating(event: MatSelectChange) {
-    this.orderByRating = event.value;
-
-    this.updateFilteredCaregiversList();
-  }
-
-  updateFilteredCaregiversList() {
-    this.filteredSearchServiceList = this.searchServiceList.filter(
-      (c) =>
-        !this.selectedLocation || c.districtsScope === this.selectedLocation
-    );
-
-    this.filteredSearchServiceList =
-      this.orderByRating === 'popular'
-        ? this.filteredSearchServiceList.sort((a, b) => b.caregiverExperience - a.caregiverExperience)
-        : this.filteredSearchServiceList;
-  }
 }

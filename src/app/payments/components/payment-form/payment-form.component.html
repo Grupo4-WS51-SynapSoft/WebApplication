@@ -6,7 +6,7 @@
         <mat-label>Cardholder Name</mat-label>
         <input
           matInput
-          [(ngModel)]="newCard.cardHolder"
+          [(ngModel)]="newCard.holder"
           name="cardHolderName"
           required
         />
@@ -16,7 +16,7 @@
         <mat-label>Card Number</mat-label>
         <input
           matInput
-          [(ngModel)]="newCard.cardNumber"
+          [(ngModel)]="newCard.number"
           name="cardNumber"
           required
         />
@@ -27,7 +27,7 @@
           <mat-label>Expiration Date</mat-label>
           <input
             matInput
-            [(ngModel)]="newCard.expirationDate"
+            [(ngModel)]="newCard.year"
             name="expirationDate"
             required
           />
@@ -37,7 +37,7 @@
           <mat-label>CVV</mat-label>
           <input
             matInput
-            [(ngModel)]="newCard.cvv"
+            [(ngModel)]="newCard.code"
             type="password"
             name="cvv"
             required

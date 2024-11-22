@@ -54,14 +54,14 @@
       <form [formGroup]="secondFormGroup">
         <mat-selection-list formControlName="paymentOption" [multiple]="false">
           @for (card of cardList; track $index) {
-          <mat-list-option [value]="card">
+            <mat-list-option [value]="card">
             <span matListItemTitle style="text-transform: uppercase">{{
-              card.cardHolder
-            }}</span>
-            <span matListItemLine
-              >**** **** **** {{ card.cardNumber.slice(-4) }}</span
-            >
-          </mat-list-option>
+                card.holder
+              }}</span>
+              <span matListItemLine
+              >**** **** **** {{ card.number?.toString()?.slice(-4) }}</span
+              >
+            </mat-list-option>
           }
         </mat-selection-list>
         <mat-dialog-actions align="end">

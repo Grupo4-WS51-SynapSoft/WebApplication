@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-import { User } from '../../../auth/model/user';
+import { User } from '../../../auth/model/User';
 import { ProfileComponent } from '../profile/profile.component';
 
 @Component({
