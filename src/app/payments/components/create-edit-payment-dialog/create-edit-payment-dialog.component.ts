@@ -55,7 +55,7 @@ export class CreateEditPaymentDialogComponent {
         cardHolder: data?.holder,
         cardNumber: data?.number,
         cvv: data?.code,
-        expirationDate: data?.month + "/" + data?.year,
+        expirationDate: data?.month + '/' + data?.year,
       });
     }
   }
@@ -65,12 +65,11 @@ export class CreateEditPaymentDialogComponent {
   }
 
   onAddCard() {
-
-    var month = this.cardForm.value.expirationDate?.split("/")[0] ?? ''
-    var year = this.cardForm.value.expirationDate?.split("/")[1] ?? ''
+    var month = this.cardForm.value.expirationDate?.split('/')[0] ?? '';
+    var year = this.cardForm.value.expirationDate?.split('/')[1] ?? '';
 
     const card: Card = {
-      userId: this.user.id,
+      profileId: this.user.profileId,
       holder: this.cardForm.value.cardHolder ?? '',
       number: this.cardForm.value.cardNumber ?? '',
       code: this.cardForm.value.cvv ?? '',
@@ -84,12 +83,11 @@ export class CreateEditPaymentDialogComponent {
   }
 
   onEditCard() {
-
-    var month = this.cardForm.value.expirationDate?.split("/")[0] ?? ''
-    var year = this.cardForm.value.expirationDate?.split("/")[1] ?? ''
+    var month = this.cardForm.value.expirationDate?.split('/')[0] ?? '';
+    var year = this.cardForm.value.expirationDate?.split('/')[1] ?? '';
 
     const card: Card = {
-      userId: this.user.id,
+      profileId: this.user.profileId,
       holder: this.cardForm.value.cardHolder ?? '',
       number: this.cardForm.value.cardNumber ?? '',
       code: this.cardForm.value.cvv ?? '',

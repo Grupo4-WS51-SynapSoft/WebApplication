@@ -14,7 +14,15 @@ export class UserService extends BaseService<User> {
     return this.http.get<User[]>(`${this.basePath}/tutors`);
   }
 
+  getTutorById(id: number) {
+    return this.http.get<User>(`${this.basePath}/tutors/${id}`);
+  }
+
   getCaregivers() {
-    return this.http.get<User[]>(`${this.basePath}/caregivers`);
+    return this.http.get<User[]>(`${this.basePath}/caregiver`);
+  }
+
+  getCaregiverById(id: number) {
+    return this.http.get<User>(`${this.basePath}/caregiver/${id}`);
   }
 }

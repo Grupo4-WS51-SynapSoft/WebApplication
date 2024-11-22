@@ -84,7 +84,7 @@ export class CreateReservationDialogComponent implements OnInit {
 
   ngOnInit() {
     this.paymentMethodsService
-      .getByUserId(this.user?.id)
+      .getByUserId(this.user?.profileId)
       .subscribe((cardList) => {
         this.cardList = cardList;
       });
@@ -94,7 +94,8 @@ export class CreateReservationDialogComponent implements OnInit {
     const day = (d || new Date()).getDay();
 
     const workingDays = this.data.schedules.map(
-      (schedule: ISchedule) => dayLabels[schedule.weekDay as keyof typeof dayLabels]
+      (schedule: ISchedule) =>
+        dayLabels[schedule.weekDay as keyof typeof dayLabels]
     );
 
     return workingDays.includes(day);
@@ -104,7 +105,6 @@ export class CreateReservationDialogComponent implements OnInit {
     const totalHours =
       +this.firstFormGroup.value.endTime.split(':')[0] -
       this.firstFormGroup.value.startTime.split(':')[0];
-
 
     const reservation: Reservation = {
       caregiverId: this.data.id,

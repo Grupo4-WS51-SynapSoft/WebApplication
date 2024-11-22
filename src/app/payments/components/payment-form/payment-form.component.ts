@@ -29,7 +29,7 @@ export class PaymentFormComponent {
 
   onSubmit() {
     if (
-      this.newCard.userId &&
+      this.newCard.profileId &&
       this.newCard.holder &&
       this.newCard.number &&
       this.newCard.month &&

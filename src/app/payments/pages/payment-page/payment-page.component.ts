@@ -41,7 +41,7 @@ export class PaymentPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.paymentMethodsService
-      .getByUserId(this.user.id)
+      .getByUserId(this.user.profileId)
       .subscribe((cards) => {
         this.cards = cards;
       });

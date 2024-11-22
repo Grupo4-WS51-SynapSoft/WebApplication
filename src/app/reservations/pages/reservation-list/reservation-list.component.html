@@ -10,17 +10,19 @@
     <th mat-header-cell *matHeaderCellDef>Caregiver's name</th>
     <td mat-cell *matCellDef="let element">
       <p>
-        {{ element.caregiver.completeName.completeName }}
+        {{
+          user.role === "tutor"
+            ? element.caregiver.completeName
+            : element.tutor.fullName
+        }}
       </p>
     </td>
   </ng-container>
 
   <ng-container matColumnDef="date">
-    <th mat-header-cell *matHeaderCellDef>
-      Date
-    </th>
+    <th mat-header-cell *matHeaderCellDef>Date</th>
     <td mat-cell *matCellDef="let element">
-      {{ element.date | date: 'dd/MM/yyyy' }}
+      {{ element.date | date : "dd/MM/yyyy" }}
     </td>
   </ng-container>
 
@@ -50,26 +52,26 @@
     <th mat-header-cell *matHeaderCellDef>Actions</th>
     <td mat-cell *matCellDef="let element">
       @if (element.status === 'PENDING') {
-        <button mat-button color="warn" (click)="handleCancel(element)">
-          <mat-icon>close</mat-icon>
-          Cancel
-        </button>
+      <button mat-button color="warn" (click)="handleCancel(element)">
+        <mat-icon>close</mat-icon>
+        Cancel
+      </button>
       } @if (element.status === 'PENDING' && this.user.role === 'caregiver') {
       <button mat-button color="primary" (click)="handleAccept(element)">
         <mat-icon>check</mat-icon>
         Accept
       </button>
-    } @if (element.status === 'ACCEPTED' && this.user.role === 'tutor') {
+      } @if (element.status === 'ACCEPTED' && this.user.role === 'tutor') {
       <button mat-button color="primary" (click)="handleStartService(element)">
         <mat-icon>check</mat-icon>
         Start service
       </button>
-    } @if (element.status === 'IN_PROGRESS' && this.user.role === 'tutor') {
+      } @if (element.status === 'IN_PROGRESS' && this.user.role === 'tutor') {
       <button mat-button color="primary" (click)="handleFinishService(element)">
         <mat-icon>check</mat-icon>
         Finalize
       </button>
-    }
+      }
     </td>
   </ng-container>
 

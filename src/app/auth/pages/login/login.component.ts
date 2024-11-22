@@ -12,7 +12,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import {User} from "../../model/User";
+import { User } from '../../model/User';
 
 @Component({
   selector: 'app-login',
@@ -101,7 +101,16 @@ export class LoginComponent implements OnInit {
     //   });
     this.router.navigate(['/search-caregiver']);
     //TODO: Guardar el id del usuario en el local storage
-    localStorage.setItem('user', '{"id":1,"role":"tutor", "fullName": "Marco Denegri", "profileImg" : "https://randomuser.me/api/portraits/men/1.jpg"}');
+    localStorage.setItem(
+      'user',
+      JSON.stringify({
+        id: 1,
+        role: 'tutor',
+        fullName: 'Marco Denegri',
+        profileImg: 'https://randomuser.me/api/portraits/men/1.jpg',
+        profileId: 3,
+      })
+    );
   }
 
   loginAsCaregiverDemoBtn() {
@@ -117,6 +126,15 @@ export class LoginComponent implements OnInit {
     //   });
     this.router.navigate(['/your-service']);
     //TODO: Guardar el id del usuario en el local storage
-    localStorage.setItem('user', '{"id":1,"role":"tutor", "fullName": "Marco Denegri", "profileImg" : "https://randomuser.me/api/portraits/men/2.jpg"}');
+    localStorage.setItem(
+      'user',
+      JSON.stringify({
+        id: 1,
+        role: 'caregiver',
+        fullName: 'Marco Denegri',
+        profileImg: 'https://randomuser.me/api/portraits/men/2.jpg',
+        profileId: 4,
+      })
+    );
   }
 }
